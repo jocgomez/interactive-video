@@ -1,0 +1,74 @@
+body {
+    width: 1920px;
+    height: 1080px;
+}
+
+.nav {
+    /* Ancho del 100% de la pantalla */
+    width: 100%;
+    /* No ocultar el menu cuando bajo */
+    position: fixed;
+    /* Elevo el menu en una capa sobre los elementos */
+    z-index: 100;
+    background-color: #212529dc;
+}
+
+.nav-link {
+    color: rgb(180, 180, 180);
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+.iconos-control {
+    width: 50px;
+    margin: 0 25px 0 25px;
+}
+
+#menu-control {
+    /* Ancho del 100% de la pantalla */
+    width: 100%;
+    /* No ocultar el menu cuando bajo */
+    position: absolute;
+    top: 1000px;
+    z-index: 100;
+}
+
+#contenido-control {
+    width: 350px;
+    display: flex;
+    flex-flow: wrap nowrap;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+
+/* Opciones de respuesta */
+
+#Botones-opciones {
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+}
+
+.opciones-respuesta {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    max-width: 200px;
+    border-radius: 10px;
+    background-color: rgba(0, 255, 255, 0.548);
+}
+
+#opcion1-1 {
+    top: 800px;
+    left: 800px;
+    background-image: url(assets/img/EL_CILINDRO.jpg);
+    background-size: 180px 180px;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: none;
+}

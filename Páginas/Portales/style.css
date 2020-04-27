@@ -1,0 +1,246 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/* 
+0 - generales 
+1 - Colores
+2 - Textos generales
+
+/* 0 - generales */
+
+* {
+    margin: 0;
+    padding: 0;
+    /* Evitar sumar ancho con relleno*/
+    box-sizing: border-box;
+}
+
+body {
+    /* Permite asignar altura del 100% a los elementos internos */
+    max-height: 1080px;
+    height: 1080px;
+    /* Tamaño de fuente, sirve para el responsive */
+    font-size: 100%;
+    margin: 0 auto;
+    /* Color de fondo */
+    background-color: white;
+}
+
+img {
+    /* Quito borde, defino ancho total, comportamiento como 
+bloque y no como texto */
+    border: none;
+    width: 100%;
+    display: block;
+}
+
+ol,
+ul,
+li {
+    /* Quto bullets o numeros a las listas */
+    list-style: none;
+}
+
+
+/* 1 - Colores */
+
+ :root {
+    --uno: #A60000;
+    --dos: #ff7300;
+}
+
+
+/* 2 - Textos generales */
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.6em;
+    color: black;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: black;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.4em;
+    color: black;
+}
+
+h4 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.3em;
+    color: black;
+}
+
+h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: black;
+}
+
+h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: black;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    /* 1em aprox 14px */
+    font-size: 0.9em;
+    text-align: left;
+    color: black;
+}
+
+a {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+em {
+    color: var(--dos);
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item {
+    padding: 5px 0;
+}
+
+.nav-item h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.nav-item img {
+    max-width: 50px;
+    margin: 0 50px 0 20px;
+}
+
+#informacion-estudiantes {
+    display: flex;
+    flex-flow: wrap nowrap;
+    justify-content: space-between;
+    margin: 4% 10% 0 10%;
+}
+
+#tabla-estudiantes h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+#datos-estudiante {
+    width: 60%;
+}
+
+.wrap-datos {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+input {
+    max-width: 25%;
+}
+
+#wrap-datos h3 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+#estudiante {
+    margin: 30px 0 30px 0;
+    width: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-flow: wrap nowrap;
+}
+
+.card-body img {
+    max-width: 150px;
+    margin-right: 50px;
+}
+
+#preguntas-estudiante {
+    display: flex;
+    flex-flow: wrap nowrap;
+    justify-content: space-between;
+}
+
+.alert {
+    margin: 0 5px !important;
+    padding: 10px !important;
+}
+
+.nav-item {
+    padding: 10px 10px;
+}
+
+.contenido-preguntas {
+    padding: 20px;
+    display: flex;
+    flex-flow: wrap nowrap;
+    justify-content: space-between;
+}
+
+.enunciado-pregunta {
+    width: 100%;
+    max-width: 45%;
+}
+
+.enunciado-pregunta p {
+    text-align: justify;
+}
+
+.duracion-intentos-pregunta {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+}
+
+.duracion-intentos-pregunta h3 {
+    width: 100%;
+    max-width: 50%;
+}
+
+.opciones-respuesta {
+    width: 50%;
+}
+
+.respuestas-pregunta {
+    display: flex;
+    flex-flow: wrap nowrap;
+    justify-content: space-between;
+}
+
+.respuestas-pregunta img {
+    width: 100%;
+    height: 100%;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.opciones:nth-child(2) {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}

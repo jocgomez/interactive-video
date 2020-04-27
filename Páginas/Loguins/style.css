@@ -1,0 +1,230 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+
+/* 
+0 - generales 
+1 - Colores
+2 - Textos generales
+
+/* 0 - generales */
+
+* {
+    margin: 0;
+    padding: 0;
+    /* Evitar sumar ancho con relleno*/
+    box-sizing: border-box;
+}
+
+body {
+    /* Permite asignar altura del 100% a los elementos internos */
+    height: 100%;
+    /* Tamaño de fuente, sirve para el responsive */
+    font-size: 100%;
+    background-color: white;
+}
+
+img {
+    /* Quito borde, defino ancho total, comportamiento como 
+bloque y no como texto */
+    border: none;
+    width: 100%;
+    display: block;
+}
+
+ol,
+ul,
+li {
+    /* Quto bullets o numeros a las listas */
+    list-style: none;
+}
+
+
+/* 1 - Colores */
+
+ :root {
+    --uno: #A60000;
+    --dos: #ff7300;
+}
+
+
+/* 2 - Textos generales */
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.6em;
+    color: black;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.5em;
+    color: black;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.4em;
+    color: black;
+}
+
+h4 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.3em;
+    color: black;
+}
+
+h5 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.2em;
+    color: black;
+}
+
+h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 1.1em;
+    color: black;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    /* 1em aprox 14px */
+    font-size: 0.9em;
+    text-align: left;
+    color: black;
+}
+
+a {
+    color: var(--uno);
+    border-bottom: 2px solid transparent;
+    font-size: 20px;
+}
+
+a:hover {
+    /* Cuando el mouse pase por encima, color 2 */
+    border-bottom: 2px solid var(--uno);
+}
+
+em {
+    color: var(--dos);
+}
+
+#content {
+    /* Ancho */
+    width: 100%;
+    max-width: 1920px;
+    height: 100%;
+    max-height: 1080px;
+    margin: 0 auto;
+    /* Color de fondo */
+    background-color: white;
+    box-shadow: 0 0 10px rgb(63, 63, 63);
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+
+/* SECCIÓN INICIO */
+
+#content-index {
+    /* Ancho */
+    width: 100%;
+    max-width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgb(63, 63, 63);
+    background-image: url("images/bg-inicio.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#informacion-index {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000003f;
+}
+
+#opciones-index {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.card {
+    margin: 30px;
+    text-align: center;
+}
+
+.card img {
+    width: 300px;
+    margin: auto;
+    padding: 30px 0 30px 0;
+}
+
+
+/* SECCIÓN LOGUINS DOCENTE-PADRES-ESTUDIANTES */
+
+#flecha-back {
+    width: 30px;
+    padding-bottom: 20px;
+}
+
+#flecha-back:hover {
+    cursor: pointer;
+}
+
+#imagen-fondo-estudiante {
+    width: 60%;
+    height: 1080px;
+    background-image: url("images/estudiantes.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#imagen-fondo-profe {
+    width: 60%;
+    height: 1080px;
+    background-image: url("images/profe.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#imagen-fondo-padres {
+    width: 60%;
+    height: 1080px;
+    background-image: url("images/padres.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#cuerpo-loguin {
+    z-index: 10;
+    padding: 100px;
+    width: 40%;
+    border-radius: 20px 0 0 20px;
+    box-shadow: -10px 0px 7px #0000005e;
+}
+
+#icono-profe {
+    width: 70%;
+    display: block;
+    margin: auto;
+    padding: 20px;
+}
+
+#tipo-loguin {
+    text-align: center;
+}
+
+form {
+    padding-top: 50px;
+}

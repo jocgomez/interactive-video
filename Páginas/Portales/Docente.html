@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Configura la página Web -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Portal Docente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Boostrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <!-- CSS -->
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="jquery.js"></script>
+
+    <script>
+        $(document).ready(function($) {
+            $(".table-row").click(function() {
+                window.document.location = $(this).data("href");
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <ul class="nav justify-content-end shadow">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Cerrar sesión</a>
+        </li>
+        <li class="nav-item">
+            <h3 class="nav-link" href="#">JUAN CARLOS ORTIZ <br> MATEMÁTICAS</h3>
+        </li>
+        <li class="nav-item">
+            <img src="images/icono-profe.svg" alt="Icono de docente">
+        </li>
+    </ul>
+
+    <div id="informacion-estudiantes" style="padding: 0;">
+        <div id="tabla-estudiantes">
+
+            <!-- Titulo de la tabla -->
+            <h3> Partidas realizadas por los estudiantes de <strong>3-1</strong></h3>
+
+            <!-- Tabla con sus filas y columnas -->
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-row" data-href="url://link-for-first-row/" data-toggle="collapse" href="#collapseExample">
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre y apellido</th>
+                        <th scope="col">Fecha de partida</th>
+                        <th scope="col">Código</th>
+                        <th scope="col">Puntaje</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Jose Gomez</td>
+                        <td>05/04/2020</td>
+                        <td>111</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob Thornton</td>
+                        <td>03/03/2020</td>
+                        <td>121</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry the Bird</td>
+                        <td>03/03/2020</td>
+                        <td>211</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Jose Gomez</td>
+                        <td>05/04/2020</td>
+                        <td>113</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Jacob Thornton</td>
+                        <td>03/03/2020</td>
+                        <td>131</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Larry the Bird</td>
+                        <td>03/03/2020</td>
+                        <td>311</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Jose Gomez</td>
+                        <td>05/04/2020</td>
+                        <td>141</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Jacob Thornton</td>
+                        <td>03/03/2020</td>
+                        <td>114</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>Larry the Bird</td>
+                        <td>03/03/2020</td>
+                        <td>411</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>Jose Gomez</td>
+                        <td>05/04/2020</td>
+                        <td>151</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>Jacob Thornton</td>
+                        <td>03/03/2020</td>
+                        <td>115</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>Larry the Bird</td>
+                        <td>03/03/2020</td>
+                        <td>511</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">13</th>
+                        <td>Jose Gomez</td>
+                        <td>05/04/2020</td>
+                        <td>161</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">14</th>
+                        <td>Jacob Thornton</td>
+                        <td>03/03/2020</td>
+                        <td>116</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">15</th>
+                        <td>Larry the Bird</td>
+                        <td>03/03/2020</td>
+                        <td>611</td>
+                        <td>9</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Botones de navegación para la tabla -->
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Siguiente</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <!-- Lateral derecho del contenido -->
+        <div id="datos-estudiante">
+            <div id="wrap-datos">
+
+                <!-- Filtrado de la tabla por cualquier columna -->
+                <h3>Buscar estudiante por columna</h3>
+                <input class="form-control mr-sm-2" id="myInput" type="search" placeholder="Buscar estudiante" aria-label="Search">
+
+                <!-- Información del estudiante seleccionado -->
+                <div class="card" id="estudiante">
+                    <!-- Titulo (Puede ser el nombre del estudiante) -->
+                    <div class="card-header">
+                        Estudiante
+                    </div>
+                    <!-- Contenido del estudiante -->
+                    <div class="card-body">
+                        <!-- Imagen del estudiante -->
+                        <img src="images/icono-estudiante.svg" alt="Icono de estudiante">
+                        <div id="contenido-estudiante-filtrado">
+                            <!-- Tabla con la información del estudiante filtrado -->
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr class="table-row" data-href="url://link-for-first-row/" data-toggle="collapse" href="#collapseExample">
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nombre y apellido</th>
+                                        <th scope="col">Fecha de partida</th>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Puntaje</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Jose Gomez</td>
+                                        <td>05/04/2020</td>
+                                        <td>111</td>
+                                        <td>8</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- Edad -->
+                            <h3><strong>Edad:</strong> 8 años</h3>
+                            <!-- Partidas -->
+                            <h3><strong>Partidas realizadas:</strong> 2</h3>
+                            <!-- Preguntas -->
+                            <div id="preguntas-estudiante">
+                                <!-- Las alertas de las preguntas, la clase "alert-succes" da color verde -->
+                                <div class="alert alert-success">
+                                    Pregunta 1
+                                </div>
+                                <div class="alert alert-success">
+                                    Pregunta 2
+                                </div>
+                                <div class="alert alert-success">
+                                    Pregunta 3
+                                </div>
+                                <div class="alert alert-success">
+                                    Pregunta 4
+                                </div>
+                                <!-- Las alertas de las preguntas, la clase "alert-danger" da color rojo -->
+                                <div class="alert alert-danger">
+                                    Pregunta 5
+                                </div>
+                                <div class="alert alert-success">
+                                    Pregunta 6
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de la pregunta del estudiante seleccionado -->
+                <div id="preguntas-respuestas-estudiante">
+
+                    <nav>
+                        <div class="nav nav-tabs justify-content-start" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-pregunta1" data-toggle="tab" href="#pregunta1" role="tab" aria-controls="pregunta1" aria-selected="true">Pregunta 1</a>
+                            <a class="nav-item nav-link" id="nav-pregunta2" data-toggle="tab" href="#pregunta2" role="tab" aria-controls="pregunta2" aria-selected="false">Pregunta 2</a>
+                            <a class="nav-item nav-link" id="nav-pregunta3" data-toggle="tab" href="#pregunta3" role="tab" aria-controls="pregunta3" aria-selected="false">Pregunta 3</a>
+                            <a class="nav-item nav-link" id="nav-pregunta4" data-toggle="tab" href="#pregunta4" role="tab" aria-controls="pregunta4" aria-selected="false">Pregunta 4</a>
+                            <a class="nav-item nav-link" id="nav-pregunta5" data-toggle="tab" href="#pregunta5" role="tab" aria-controls="pregunta5" aria-selected="false">Pregunta 5</a>
+                            <a class="nav-item nav-link" id="nav-pregunta6" data-toggle="tab" href="#pregunta6" role="tab" aria-controls="pregunta6" aria-selected="false">Pregunta 6</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content border-top-0 border" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="pregunta1" role="tabpanel" aria-labelledby="nav-pregunta1">
+                            <div class="contenido-preguntas">
+                                <div class="enunciado-pregunta">
+                                    <h3><strong>Enunciado o situación</strong></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                    <div class="duracion-intentos-pregunta">
+                                        <h3>Duración: 20 s</h3>
+                                        <h3>Intentos del estudiante: 3</h3>
+                                    </div>
+                                </div>
+                                <div class="opciones-respuesta">
+                                    <h3><strong>Opciones de respuesta</strong></h3>
+                                    <div class="respuestas-pregunta">
+                                        <div class="opciones">
+                                            <img src="images/piramide.jpg" class="img-fluid" alt="piramide">
+                                            <h3 align="center">Piramide</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/Cubo.webp" class="img-fluid" alt="Cubo">
+                                            <h3 align="center">Cubo</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/cilindro.jpg" class="img-fluid" alt="Cilindro">
+                                            <h3 align="center">Cilindro</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pregunta2" role="tabpanel" aria-labelledby="nav-pregunta2">
+                            <div class="contenido-preguntas">
+                                <div class="enunciado-pregunta">
+                                    <h3><strong>Enunciado o situación</strong></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                    <div class="duracion-intentos-pregunta">
+                                        <h3>Duración: 30 s</h3>
+                                        <h3>Intentos del estudiante: 2</h3>
+                                    </div>
+                                </div>
+                                <div class="opciones-respuesta">
+                                    <h3><strong>Opciones de respuesta</strong></h3>
+                                    <div class="respuestas-pregunta">
+                                        <div class="opciones">
+                                            <img src="images/piramide.jpg" class="img-fluid" alt="piramide">
+                                            <h3 align="center">Piramide</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/Cubo.webp" class="img-fluid" alt="Cubo">
+                                            <h3 align="center">Cubo</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/cilindro.jpg" class="img-fluid" alt="Cilindro">
+                                            <h3 align="center">Cilindro</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pregunta3" role="tabpanel" aria-labelledby="nav-pregunta3">
+                            <div class="contenido-preguntas">
+                                <div class="enunciado-pregunta">
+                                    <h3><strong>Enunciado o situación</strong></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                    <div class="duracion-intentos-pregunta">
+                                        <h3>Duración: 15 s</h3>
+                                        <h3>Intentos del estudiante: 1</h3>
+                                    </div>
+                                </div>
+                                <div class="opciones-respuesta">
+                                    <h3><strong>Opciones de respuesta</strong></h3>
+                                    <div class="respuestas-pregunta">
+                                        <div class="opciones">
+                                            <img src="images/piramide.jpg" class="img-fluid" alt="piramide">
+                                            <h3 align="center">Piramide</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/Cubo.webp" class="img-fluid" alt="Cubo">
+                                            <h3 align="center">Cubo</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/cilindro.jpg" class="img-fluid" alt="Cilindro">
+                                            <h3 align="center">Cilindro</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pregunta4" role="tabpanel" aria-labelledby="nav-pregunta4">
+                            <div class="contenido-preguntas">
+                                <div class="enunciado-pregunta">
+                                    <h3><strong>Enunciado o situación</strong></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                    <div class="duracion-intentos-pregunta">
+                                        <h3>Duración: 20 s</h3>
+                                        <h3>Intentos del estudiante: 5</h3>
+                                    </div>
+                                </div>
+                                <div class="opciones-respuesta">
+                                    <h3><strong>Opciones de respuesta</strong></h3>
+                                    <div class="respuestas-pregunta">
+                                        <div class="opciones">
+                                            <img src="images/piramide.jpg" class="img-fluid" alt="piramide">
+                                            <h3 align="center">Piramide</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/Cubo.webp" class="img-fluid" alt="Cubo">
+                                            <h3 align="center">Cubo</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/cilindro.jpg" class="img-fluid" alt="Cilindro">
+                                            <h3 align="center">Cilindro</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pregunta5" role="tabpanel" aria-labelledby="nav-pregunta5">
+                            <div class="contenido-preguntas">
+                                <div class="enunciado-pregunta">
+                                    <h3><strong>Enunciado o situación</strong></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                    <div class="duracion-intentos-pregunta">
+                                        <h3>Duración: 10 s</h3>
+                                        <h3>Intentos del estudiante: 3</h3>
+                                    </div>
+                                </div>
+                                <div class="opciones-respuesta">
+                                    <h3><strong>Opciones de respuesta</strong></h3>
+                                    <div class="respuestas-pregunta">
+                                        <div class="opciones">
+                                            <img src="images/piramide.jpg" class="img-fluid" alt="piramide">
+                                            <h3 align="center">Piramide</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/Cubo.webp" class="img-fluid" alt="Cubo">
+                                            <h3 align="center">Cubo</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/cilindro.jpg" class="img-fluid" alt="Cilindro">
+                                            <h3 align="center">Cilindro</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="pregunta6" role="tabpanel" aria-labelledby="nav-pregunta6">
+                            <div class="contenido-preguntas">
+                                <div class="enunciado-pregunta">
+                                    <h3><strong>Enunciado o situación</strong></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat.
+                                    </p>
+                                    <div class="duracion-intentos-pregunta">
+                                        <h3>Duración: 20 s</h3>
+                                        <h3>Intentos del estudiante: 3</h3>
+                                    </div>
+                                </div>
+                                <div class="opciones-respuesta">
+                                    <h3><strong>Opciones de respuesta</strong></h3>
+                                    <div class="respuestas-pregunta">
+                                        <div class="opciones">
+                                            <img src="images/piramide.jpg" class="img-fluid" alt="piramide">
+                                            <h3 align="center">Piramide</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/Cubo.webp" class="img-fluid" alt="Cubo">
+                                            <h3 align="center">Cubo</h3>
+                                        </div>
+                                        <div class="opciones">
+                                            <img src="images/cilindro.jpg" class="img-fluid" alt="Cilindro">
+                                            <h3 align="center">Cilindro</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
