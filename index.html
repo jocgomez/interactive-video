@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Configura la página Web -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Video interactivo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- CSS -->
+    <link href="style.css" rel="stylesheet" type="text/css" />
+
+    <!-- Importa librerías desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <!-- Libreria para crear botones en p5 https://github.com/Lartu/p5.clickable-->
+    <script src="assets/lib/p5.clickable.js"></script>
+
+    <!-- Código de la práctica -->
+    <script src="app/inicio.js"></script>
+
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+
+    <!-- Cambiar icono de play/pause al clickearlo -->
+    <script language="javascript">
+        function changeImage() {
+            if (
+                document.getElementById("icono-play").getAttribute("src") ==
+                "assets/img/play_circle_filled-black-18dp.svg"
+            ) {
+                document.getElementById("icono-play").setAttribute("src", "assets/img/pause_circle_filled-black-18dp.svg");
+            } else {
+                document.getElementById("icono-play").setAttribute("src", "assets/img/play_circle_filled-black-18dp.svg");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Docentes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Padres</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Saber más</a>
+        </li>
+    </ul>
+
+    <div id="vida-intentos">
+        <div><img src="assets/img/Corazon.svg" class="intentos" id="corazon1" alt="corazon"></div>
+        <div><img src="assets/img/Corazon.svg" class="intentos" id="corazon2" alt="corazon"></div>
+        <div><img src="assets/img/Corazon.svg" class="intentos" id="corazon3" alt="corazon"></div>
+    </div>
+
+    <div id="puntaje-trofeos">
+        <h3 id="puntaje">0</h3>
+        <div><img src="assets/img/Trofeo.svg" id="trofeo" alt="Trofeo"></div>
+    </div>
+
+    <div id="menu-control">
+        <div id="contenido-control" class="justify-content-center">
+            <div id="boton-play">
+                <img id="icono-play" class="iconos-control" src="assets/img/play_circle_filled-black-18dp.svg" alt="Icono play" onclick="changeImage()" />
+            </div>
+            <div id="boton-volumen-aumentar">
+                <img id="icono-up" class="iconos-control" src="assets/img/volume_up-black-18dp.svg" alt="Icono volumen +" />
+            </div>
+            <div id="boton-volumen-disminuir">
+                <img id="icono-down" class="iconos-control" src="assets/img/volume_down-black-18dp.svg" alt="Icono volumen -" />
+            </div>
+        </div>
+    </div>
+
+    <div id="Botones-opciones">
+        <div class="opciones-respuesta" id="opcion1-1"></div>
+        <div class="opciones-respuesta" id="opcion1-2"></div>
+        <div class="opciones-respuesta" id="opcion1-3"></div>
+        <div class="opciones-respuesta" id="opcion1-4"></div>
+        <div class="opciones-respuesta" id="opcion1-5"></div>
+        <div class="opciones-respuesta" id="opcion1-6"></div>
+        <div class="opciones-respuesta" id="opcion1-7"></div>
+    </div>
+</body>
+
+</html>
