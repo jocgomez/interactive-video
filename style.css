@@ -55,12 +55,12 @@ body {
 
 .opciones-respuesta {
     position: absolute;
-    width: 200px;
+    /*width: 200px;
     height: 200px;
     max-width: 200px;
     max-width: 200px;
     border-radius: 10px;
-    background-color: rgba(0, 255, 255, 0);
+    background-color: rgba(0, 255, 255, 0);*/
 }
 
 #opcion1-1 {
@@ -139,6 +139,34 @@ body {
     background-position: center; */
     display: none;
     cursor: pointer;
+}
+
+#opcion1-1:hover {
+    content: url("assets/img/Normales/ObjRecurso 2.png");
+}
+
+#opcion1-2:hover {
+    content: url("assets/img/Normales/ObjRecurso 3.png");
+}
+
+#opcion1-3:hover {
+    content: url("assets/img/Normales/ObjRecurso 5.png");
+}
+
+#opcion1-4:hover {
+    content: url("assets/img/Normales/ObjRecurso 8.png");
+}
+
+#opcion1-5:hover {
+    content: url("assets/img/Normales/ObjRecurso 7.png");
+}
+
+#opcion1-6:hover {
+    content: url("assets/img/Normales/ObjRecurso 6.png");
+}
+
+#opcion1-7:hover {
+    content: url("assets/img/Normales/ObjRecurso 1.png");
 }
 
 #vida-intentos {
