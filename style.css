@@ -64,12 +64,8 @@ body {
 }
 
 #opcion1-1 {
-    top: 735px;
-    left: 200px;
-    /*background-image: url(assets/img/EL_CILINDRO.jpg);
-    background-size: 180px 180px;
-    background-repeat: no-repeat;
-    background-position: center; */
+    top: 635px;
+    left: 1050px;
     display: none;
     cursor: pointer;
 }
@@ -77,66 +73,51 @@ body {
 #opcion1-2 {
     top: 810px;
     left: 1350px;
-    /* background-image: url(assets/img/EL_CILINDRO.jpg);
-    background-size: 180px 180px;
-    background-repeat: no-repeat;
-    background-position: center; */
     display: none;
     cursor: pointer;
 }
 
 #opcion1-3 {
-    top: 100px;
+    top: 150px;
     left: 1595px;
     height: 700px;
-    /* background-image: url(assets/img/EL_CILINDRO.jpg);
-    background-size: 180px 180px;
-    background-repeat: no-repeat;
-    background-position: center; */
     display: none;
     cursor: pointer;
 }
 
 #opcion1-4 {
-    top: 850px;
+    top: 920px;
     left: 1655px;
-    /* background-image: url(assets/img/EL_CILINDRO.jpg);
-    background-size: 180px 180px;
-    background-repeat: no-repeat;
-    background-position: center; */
+    z-index: 101;
     display: none;
     cursor: pointer;
 }
 
 #opcion1-5 {
-    top: 740px;
-    left: 1050px;
-    /* background-image: url(assets/img/EL_CILINDRO.jpg);
-    background-size: 180px 180px;
-    background-repeat: no-repeat;
-    background-position: center; */
+    top: 880px;
+    left: 100px;
+    z-index: 101;
     display: none;
     cursor: pointer;
 }
 
 #opcion1-6 {
-    top: 170px;
-    left: 350px;
-    /* background-image: url(assets/img/EL_CILINDRO.jpg);
-    background-size: 180px 180px;
-    background-repeat: no-repeat;
-    background-position: center; */
+    top: 510px;
+    left: 200px;
     display: none;
     cursor: pointer;
 }
 
 #opcion1-7 {
-    top: 670px;
+    top: 400px;
     left: 570px;
-    /* background-image: url(assets/img/EL_CILINDRO.jpg);
-    background-size: 180px 180px;
-    background-repeat: no-repeat;
-    background-position: center; */
+    display: none;
+    cursor: pointer;
+}
+
+#opcion1-8 {
+    top: 800px;
+    left: 620px;
     display: none;
     cursor: pointer;
 }
@@ -167,6 +148,10 @@ body {
 
 #opcion1-7:hover {
     content: url("assets/img/Claros/ObjRecurso 1.png");
+}
+
+#opcion1-8:hover {
+    content: url("assets/img/Claros/ObjRecurso 9.png");
 }
 
 #vida-intentos {
