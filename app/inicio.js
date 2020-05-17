@@ -35,6 +35,7 @@ var Opciones11;
 
 function preload() {
     videoFile = createVideo('assets/vid/VideoFinal.mp4', videoLoad);
+    //Videos de error de la primera selección de preguntas
     videoError[0] = createVideo('assets/vid/error1/incorrectoBateCirculo.mp4', videoLoad);
     videoError[1] = createVideo('assets/vid/error1/incorrectoCometaCirculo.mp4', videoLoad);
     videoError[2] = createVideo('assets/vid/error1/incorrectoCubetaCirculo.mp4', videoLoad);
@@ -42,29 +43,38 @@ function preload() {
     videoError[4] = createVideo('assets/vid/error1/incorrectoPiramideCirculo.mp4', videoLoad);
     videoError[5] = createVideo('assets/vid/error1/incorrectoTablaCirculo.mp4', videoLoad);
     videoError[6] = createVideo('assets/vid/error1/incorrectoToallaCirculo.mp4', videoLoad);
+    //Videos de error de la segunda selección de preguntas
+    videoError[7] = createVideo('assets/vid/error2/incorrectoBateCilindro.mp4', videoLoad);
+    videoError[8] = createVideo('assets/vid/error2/incorrectoCometaCilindro.mp4', videoLoad);
+    videoError[9] = createVideo('assets/vid/error2/incorrectoMegafonoCilindro.mp4', videoLoad);
+    videoError[10] = createVideo('assets/vid/error2/incorrectoPiramideCilindro.mp4', videoLoad);
+    videoError[11] = createVideo('assets/vid/error2/incorrectoTablaCilindro.mp4', videoLoad);
+    videoError[12] = createVideo('assets/vid/error2/incorrectoToallaCilindro.mp4', videoLoad);
+    //Videos de error de la tercera selección de preguntas
+    videoError[13] = createVideo('assets/vid/error2/incorrectoCometaCilindro.mp4', videoLoad);
+    videoError[14] = createVideo('assets/vid/error2/incorrectoMegafonoCilindro.mp4', videoLoad);
+    videoError[15] = createVideo('assets/vid/error2/incorrectoPiramideCilindro.mp4', videoLoad);
+    videoError[16] = createVideo('assets/vid/error2/incorrectoTablaCilindro.mp4', videoLoad);
+    videoError[17] = createVideo('assets/vid/error2/incorrectoToallaCilindro.mp4', videoLoad);
 }
 
 function videoLoad() {
+    //Pauso el video principal
     videoFile.pause();
-    videoError[0].pause();
-    videoError[1].pause();
-    videoError[2].pause();
-    videoError[3].pause();
-    videoError[4].pause();
-    videoError[5].pause();
-    videoError[6].pause();
+    //Pauso todos los videos de error
+    for (var k in videoError) {
+        videoError[k].pause();
+    }
 }
 
 function setup() {
     createCanvas(1920, 1080);
+    //Escondo el html del video principal
     videoFile.hide();
-    videoError[0].hide();
-    videoError[1].hide();
-    videoError[2].hide();
-    videoError[3].hide();
-    videoError[4].hide();
-    videoError[5].hide();
-    videoError[6].hide();
+    //Escondo cada uno de los videos de error
+    for (var k in videoError) {
+        videoError[k].hide();
+    }
 
     //Código para ejecutar las acciones de control de video a partir de los elementos HTML
     document.getElementById("icono-play").addEventListener("click", botonReproducir);
@@ -118,15 +128,13 @@ function draw() {
     noStroke();
     //Rectangulo inferior que se completa a partir de la duración del video, progreso del estudiante durante el video
     rect(10, 1065, (tiempoVideo * 1900) / duracionVideo, 5);
-
-    //Función para pausar o reproducir el video
-    reproducir();
 }
 
 //Función para cuando presione el botón html y presione la barra espaciadora
 function botonReproducir(event) {
     //Iniciar si es par, pausa el video, si es impar lo reproduce, al aumentarlo, se intercambia
     iniciar += 1;
+    reproducir();
 }
 
 function reproducir() {
@@ -174,10 +182,7 @@ function keyTyped() {
         //Se llama la función js presente en el html que cambia el icono del boton de reproducir
         changeImage();
     }
-    if (key == 'e') {
-        //Al presionar la tecla e, se sale del video que se reproduce al seleccionar una respuesta incorrecta
-        correcta = true;
-    }
+    // Al presionar ENTER se salta el menú inicial
     if (keyCode == ENTER) {
         menu = true;
     }
@@ -191,13 +196,14 @@ function volverVideo(videoError) {
     //Apenas termine el video de error se dibuja el video principal y se reproduce
     if (tiempo == duracion) {
         correcta = true;
-        videoFile.pause();
         //Sale del video de error
         enError = false;
         //Reproduce el video principal nuevamente
         iniciar = 1;
+        reproducir();
 
         if (intentos == 0) {
+            //videoFile.pause();
             //Escondo las opciones para continuar con el video
             esconderOpciones();
             //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
@@ -212,8 +218,15 @@ function volverVideo(videoError) {
                     //Al terminar sus intentos, se continua con el video
                     setTimeout(function() {
                         //Opción correcta de la primera parte, continua con el video
-                        videoFile.play().time(97);
-                    }, 250);
+                        videoFile.play().time(98);
+                    }, 150);
+                    break;
+                case 2:
+                    //Al terminar sus intentos, se continua con el video
+                    setTimeout(function() {
+                        //Opción correcta de la segunda parte, continua con el video
+                        videoFile.play().time(151.8);
+                    }, 150);
                     break;
             }
         }
@@ -232,19 +245,19 @@ function Preguntas() {
     //Inicio
     if (!menu) {
         if (tiempoVideo > 22 && tiempoVideo < 22.03) {
-            videoFile.pause();
+            //videoFile.pause();
             //Si no presiona enter, no sale del menú inicial
             setTimeout(function() {
-                videoFile.play().time(0);
+                videoFile.time(0);
             }, 250);
 
         }
     } else {
         //Al precionar enter, continua con el video
-        videoFile.pause();
+        //videoFile.pause();
         setTimeout(function() {
-            //videoFile.play().time(23);
-            videoFile.play().time(50);
+            videoFile.play().time(23);
+            //videoFile.time(50);
         }, 250);
 
         //Al continuar con el video, muestro los corazones, los trofeos y el puntaje
@@ -258,7 +271,7 @@ function Preguntas() {
     }
 
     //Pregunta 1
-    if (tiempoVideo > 52 && tiempoVideo < 87.03) {
+    if (tiempoVideo > 52.1 && tiempoVideo < 87.5) {
 
         if (!enError) {
             //Si no se encuentra en un video de error, muestra las opciones de respuesta
@@ -268,26 +281,34 @@ function Preguntas() {
         //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
         //enPregunta = false;
         if (tiempoVideo > 87 && tiempoVideo < 87.03) {
-            videoFile.pauseVideo();
+            //videoFile.pauseVideo();
             setTimeout(function() {
                 //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
-                videoFile.play().time(55);
+                videoFile.time(55);
             }, 250);
         }
     }
 
     //Pregunta 2
-    else if (tiempoVideo > 30 && tiempoVideo < 30.03) {
-        //Se pausa el video
-        //iniciar = 0;
-        //pauseVideo();
-        //Escondo el botón
-        //Opciones12.style.display = "block";
-        //Opciones15.style.display = "block";
-        //Opciones16.style.display = "block";
-        //Opciones17.style.display = "block";
+    else if (tiempoVideo > 116.65 && tiempoVideo < 151.85) {
+
+        console.log(duracionVideo);
+        if (!enError) {
+            //Si no se encuentra en un video de error, muestra las opciones de respuesta
+            mostrarOpciones();
+            //Escondo la opción de pelota anteriormente seleccionada
+            Opciones11.style.display = "none";
+        }
+
         //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
-        //enPregunta = true;
+        //enPregunta = false;
+        if (tiempoVideo > 151.5 && tiempoVideo < 151.75) {
+            //videoFile.pauseVideo();
+            setTimeout(function() {
+                //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
+                videoFile.time(120);
+            }, 250);
+        }
     }
 
     //Pregunta 3
@@ -324,15 +345,15 @@ function Preguntas() {
 function opcionesRespuesta(clicked_id) {
     tiempoVideo = videoFile.time();
 
-    //Opciones para la primera pregunta, correctas e incorrectas
-    if (tiempoVideo > 52 && tiempoVideo < 88) {
+    //Opciones para la PRIMERA pregunta, correctas e incorrectas
+    if (tiempoVideo > 52.1 && tiempoVideo < 87.03) {
         pregunta = 1;
         switch (clicked_id) {
             case 'opcion1-1':
-                videoFile.pause();
+                //videoFile.pause();
                 setTimeout(function() {
                     //Opción correcta de la primera parte, continua con el video
-                    videoFile.play().time(88);
+                    videoFile.time(88);
                 }, 250);
                 opcionCorrecta();
                 break;
@@ -362,6 +383,40 @@ function opcionesRespuesta(clicked_id) {
                 break;
         }
     }
+
+    //Opciones para la SEGUNDA pregunta, correctas e incorrectas
+    if (tiempoVideo > 117 && tiempoVideo < 151) {
+        pregunta = 2;
+        switch (clicked_id) {
+            case 'opcion1-2':
+                setTimeout(function() {
+                    //Opción correcta de la segunda parte, continua con el video
+                    videoFile.time(151.8);
+                }, 250);
+                opcionCorrecta();
+                break;
+            case 'opcion1-3':
+                incorrecta = 11;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-4':
+                incorrecta = 10;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-5':
+                incorrecta = 9;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-6':
+                incorrecta = 8;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-7':
+                incorrecta = 12;
+                opcionIncorrecta(incorrecta);
+                break;
+        }
+    }
 }
 
 function opcionCorrecta() {
@@ -375,7 +430,8 @@ function opcionCorrecta() {
     document.getElementById("puntaje").innerHTML = puntaje;
     //Muestro nuevamente todos los corazones
     mostrarCorazones();
-
+    //Se reestablecen los intentos por pregunta
+    intentos = 3;
 }
 
 function opcionIncorrecta(pregunta) {
@@ -383,6 +439,7 @@ function opcionIncorrecta(pregunta) {
     esconderOpciones();
     //Se pausa el video principal para darle paso al error
     iniciar = 0;
+    reproducir();
     //Se cambia la variable a una incorrecta para reproducir uno de los videos incorrectos
     correcta = false;
     //Se va reduciendo los intentos hasta llegar a cero
@@ -404,56 +461,6 @@ function opcionIncorrecta(pregunta) {
             corazon1.style.display = "none";
             break;
     }
-
-}
-
-function correcto1(event) {
-
-    //Se guarda el tiempo del video principal
-    tiempoVideo = videoFile.time();
-
-    //Se identifican los tiempos de las preguntas para establecer un tiempo seguido y continuar
-
-    //Pregunta 1
-    if (tiempoVideo > 10 && tiempoVideo < 10.03) {
-        //Establezco el video en cierto tiempo
-        videoFile.currentTime = 15;
-
-    }
-
-    //Pregunta 2
-    else if (tiempoVideo > 30 && tiempoVideo < 30.03) {
-        //Establezco el video en cierto tiempo
-        videoFile.currentTime = 35;
-    }
-
-    //Pregunta 3
-    else if (tiempoVideo > 45 && tiempoVideo < 45.03) {
-        //Establezco el video en cierto tiempo
-        videoFile.currentTime = 50;
-    }
-
-    //Pregunta 4
-    else if (tiempoVideo > 60 && tiempoVideo < 60.03) {
-        //Establezco el video en cierto tiempo
-        videoFile.currentTime = 65;
-    }
-
-    //Aumento el puntaje del estudiante
-    puntaje += 1;
-    //Reproduzco el video
-    iniciar = 1;
-    //Se quitan de la pantalla todas las opciones
-    esconderOpciones();
-    //Ya no se encuentra en una pregunta
-    enPregunta = false;
-    //La respuesta fue correcta, esto para seguir reproduciendo el video principal (mirar el draw)
-    correcta = true;
-    //Establezco el puntaje en el elemento html
-    document.getElementById("puntaje").innerHTML = puntaje;
-    //Muestro nuevamente todos los corazones
-    mostrarCorazones();
-
 }
 
 function esconderOpciones() {
@@ -483,102 +490,4 @@ function mostrarCorazones() {
     corazon1.style.display = "block";
     corazon2.style.display = "block";
     corazon3.style.display = "block";
-}
-
-//Funcion que se llama al seleccionar una opcion incorrecta
-function incorrecto1(event) {
-    //Se cambia la variable a una incorrecta para reproducir uno de los videos incorrectos
-    correcta = false;
-    //Se identifica en que tiempo quedó el video principal
-    tiempoVideo = videoFile.time();
-
-
-    //Pregunta 1
-    if (tiempoVideo > 10 && tiempoVideo < 10.03) {
-        incorrecta = 1;
-        //En caso de terminar los intentos, salto estas opciones de respuesta
-        if (intentos == -1) {
-            //Variable para cambiar al video principal
-            correcta = true;
-            //Establezco el video en cierto tiempo
-            videoFile.currentTime = 15;
-            //Escondo las opciones para continuar con el video
-            esconderOpciones();
-            //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
-            intentos = 3;
-            //Reproduzco el video para seguir
-            iniciar = 1;
-            //Ya no se encuentra en una pregunta
-            enPregunta = false;
-            //Muestro nuevamente todos los corazones
-            mostrarCorazones();
-        }
-    }
-
-    //Pregunta 2
-    else if (tiempoVideo > 30 && tiempoVideo < 30.03) {
-        incorrecta = 2;
-        //En caso de terminar los intentos, salto estas opciones de respuesta
-        if (intentos == -1) {
-            //Variable para cambiar al video principal
-            correcta = true;
-            //Establezco el video en cierto tiempo
-            videoFile.currentTime = 35;
-            //Escondo las opciones para continuar con el video
-            esconderOpciones();
-            //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
-            intentos = 3;
-            //Reproduzco el video para seguir
-            iniciar = 1;
-            //Ya no se encuentra en una pregunta
-            enPregunta = false;
-            //Muestro nuevamente todos los corazones
-            mostrarCorazones();
-        }
-    }
-
-    //Pregunta 3
-    else if (tiempoVideo > 45 && tiempoVideo < 45.03) {
-        incorrecta = 3;
-        //En caso de terminar los intentos, salto estas opciones de respuesta
-        if (intentos == -1) {
-            //Variable para cambiar al video principal
-            correcta = true;
-            //Establezco el video en cierto tiempo
-            videoFile.currentTime = 50;
-            //Escondo las opciones para continuar con el video
-            esconderOpciones();
-            //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
-            intentos = 3;
-            //Reproduzco el video para seguir
-            iniciar = 1;
-            //Ya no se encuentra en una pregunta
-            enPregunta = false;
-            //Muestro nuevamente todos los corazones
-            mostrarCorazones();
-        }
-    }
-
-    //Pregunta 4
-    else if (tiempoVideo > 60 && tiempoVideo < 60.03) {
-        incorrecta = 4;
-        //En caso de terminar los intentos, salto estas opciones de respuesta
-        if (intentos == -1) {
-            //Variable para cambiar al video principal
-            correcta = true;
-            //Establezco el video en cierto tiempo
-            videoFile.currentTime = 65;
-            //Escondo las opciones para continuar con el video
-            esconderOpciones();
-            //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
-            intentos = 3;
-            //Reproduzco el video para seguir
-            iniciar = 1;
-            //Ya no se encuentra en una pregunta
-            enPregunta = false;
-            //Muestro nuevamente todos los corazones
-            mostrarCorazones();
-        }
-    }
-
 }
