@@ -8,9 +8,13 @@ var videoError = [];
 var tiempoVideo = 0;
 //Variable que guarda la duración del video para crear la barra de progreso
 var duracionVideo = 0;
-//Variable que va a guardar el tiempo del video de error y su duración
+//Variable que va a guardar el tiempo del video de error y su duración para cambiar al video principal apenas termine
 var tiempoError = 0;
 var duracionError = 0;
+//Variable para identificar si se encuentra en un video actualmente y así quitar de la pantalla las opciones de selección
+var enError = false;
+//Variable para identificar en que pregunta se encuentra
+var pregunta = 0;
 
 //Variable para reproducir o pausar el video
 let iniciar = 0;
@@ -180,12 +184,39 @@ function keyTyped() {
 }
 
 function volverVideo(videoError) {
+    //Se guarda la duración y el tiempo actual del video error
     var duracion = videoError.duration();
     var tiempo = videoError.time();
 
+    //Apenas termine el video de error se dibuja el video principal y se reproduce
     if (tiempo == duracion) {
         correcta = true;
-        videoFile.play()
+        videoFile.pause();
+        //Sale del video de error
+        enError = false;
+        //Reproduce el video principal nuevamente
+        iniciar = 1;
+
+        if (intentos == 0) {
+            //Escondo las opciones para continuar con el video
+            esconderOpciones();
+            //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
+            intentos = 3;
+            //Ya no se encuentra en una pregunta
+            enPregunta = false;
+            //Muestro nuevamente todos los corazones
+            mostrarCorazones();
+            //Se continua con el video a partir del tiempo de cada pregunta
+            switch (pregunta) {
+                case 1:
+                    //Al terminar sus intentos, se continua con el video
+                    setTimeout(function() {
+                        //Opción correcta de la primera parte, continua con el video
+                        videoFile.play().time(97);
+                    }, 250);
+                    break;
+            }
+        }
     }
 }
 
@@ -228,11 +259,16 @@ function Preguntas() {
 
     //Pregunta 1
     if (tiempoVideo > 52 && tiempoVideo < 87.03) {
-        mostrarOpciones();
+
+        if (!enError) {
+            //Si no se encuentra en un video de error, muestra las opciones de respuesta
+            mostrarOpciones();
+        }
+
         //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
-        enPregunta = true;
+        //enPregunta = false;
         if (tiempoVideo > 87 && tiempoVideo < 87.03) {
-            videoFile.pause();
+            videoFile.pauseVideo();
             setTimeout(function() {
                 //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
                 videoFile.play().time(55);
@@ -290,7 +326,7 @@ function opcionesRespuesta(clicked_id) {
 
     //Opciones para la primera pregunta, correctas e incorrectas
     if (tiempoVideo > 52 && tiempoVideo < 88) {
-
+        pregunta = 1;
         switch (clicked_id) {
             case 'opcion1-1':
                 videoFile.pause();
@@ -303,6 +339,27 @@ function opcionesRespuesta(clicked_id) {
             case 'opcion1-2':
                 incorrecta = 2;
                 opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-3':
+                incorrecta = 5;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-4':
+                incorrecta = 4;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-5':
+                incorrecta = 3;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-6':
+                incorrecta = 1;
+                opcionIncorrecta(incorrecta);
+                break;
+            case 'opcion1-7':
+                incorrecta = 6;
+                opcionIncorrecta(incorrecta);
+                break;
         }
     }
 }
@@ -325,13 +382,15 @@ function opcionIncorrecta(pregunta) {
     //Se esconden las opciones de selección
     esconderOpciones();
     //Se pausa el video principal para darle paso al error
-    videoFile.pause();
+    iniciar = 0;
     //Se cambia la variable a una incorrecta para reproducir uno de los videos incorrectos
     correcta = false;
     //Se va reduciendo los intentos hasta llegar a cero
     intentos -= 1;
     //Se reproduce el video de error determinado
     videoError[pregunta].play();
+    //Se encuentra en un video de error
+    enError = true;
 
     //Se destruyen los corazons a partir de la cantidad de incorrectos realizados
     switch (intentos) {
@@ -344,29 +403,6 @@ function opcionIncorrecta(pregunta) {
         case 0:
             corazon1.style.display = "none";
             break;
-    }
-
-    if (intentos == -1) {
-        //Variable para cambiar al video principal
-        correcta = true;
-        //Escondo las opciones para continuar con el video
-        esconderOpciones();
-        //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
-        intentos = 3;
-        //Ya no se encuentra en una pregunta
-        enPregunta = false;
-        //Muestro nuevamente todos los corazones
-        mostrarCorazones();
-        //Se continua con el video a partir del tiempo de cada pregunta
-        switch (pregunta) {
-            case 1:
-                //Al terminar sus intentos, se continua con el video
-                videoFile.pause();
-                setTimeout(function() {
-                    //Opción correcta de la primera parte, continua con el video
-                    videoFile.play().time(97);
-                }, 250);
-        }
     }
 
 }
