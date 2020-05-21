@@ -34,7 +34,7 @@ let menu = false;
 var Opciones11;
 
 function preload() {
-    videoFile = createVideo('assets/vid/Parte1.mp4', videoLoad);
+    videoFile = createVideo('assets/vid/Entero.mp4', videoLoad);
     //Videos de error de la primera selección de preguntas
     videoError[0] = createVideo('assets/vid/error1/incorrectoBateCirculo.mp4', videoLoad);
     videoError[1] = createVideo('assets/vid/error1/incorrectoCometaCirculo.mp4', videoLoad);
@@ -56,11 +56,17 @@ function preload() {
     videoError[15] = createVideo('assets/vid/error3/incorrectoMegafonoOvalo.mp4', videoLoad);
     videoError[16] = createVideo('assets/vid/error3/incorrectoPiramideOvalo.mp4', videoLoad);
     videoError[17] = createVideo('assets/vid/error3/incorrectoToallaOvalo.mp4', videoLoad);
-    //Videos de error de la tercera selección de preguntas
+    //Videos de error de la cuarta selección de preguntas
     videoError[18] = createVideo('assets/vid/error4/incorrectoBateRectangulo.mp4', videoLoad);
     videoError[19] = createVideo('assets/vid/error4/incorrectoCometaRectangulo.mp4', videoLoad);
     videoError[20] = createVideo('assets/vid/error4/incorrectoMegafonoRectangulo.mp4', videoLoad);
     videoError[21] = createVideo('assets/vid/error4/incorrectoPiramideRectangulo.mp4', videoLoad);
+
+    //Videos de error de la quinta selección de preguntas PARTE 2
+    videoError[22] = createVideo('assets/vid/error5/Incorrecta1.mp4', videoLoad);
+    videoError[23] = createVideo('assets/vid/error5/Incorrecta2.mp4', videoLoad);
+    videoError[24] = createVideo('assets/vid/error5/Incorrecta3.1.mp4', videoLoad);
+    videoError[25] = createVideo('assets/vid/error5/Incorrecta3.2.mp4', videoLoad);
 }
 
 function videoLoad() {
@@ -87,7 +93,7 @@ function setup() {
     document.getElementById("icono-down").addEventListener("click", volumeDown);
     //document.getElementsByTagName("video").autoplay = true;
 
-    //Código para identificar cuando clickea una opción en pantalla
+    //Código para llamar las opciones de respuesta para la primera parte del video
     Opciones11 = document.getElementById("opcion1-1");
     Opciones12 = document.getElementById("opcion1-2");
     Opciones13 = document.getElementById("opcion1-3");
@@ -96,6 +102,16 @@ function setup() {
     Opciones16 = document.getElementById("opcion1-6");
     Opciones17 = document.getElementById("opcion1-7");
     Opciones18 = document.getElementById("opcion1-8");
+    //Código para llamar las opciones de respuesta para la segunda parte del video
+    Opciones21 = document.getElementById("opcion2-1");
+    Opciones22 = document.getElementById("opcion2-2");
+    Opciones23 = document.getElementById("opcion2-3");
+    Opciones24 = document.getElementById("opcion2-4");
+    Opciones25 = document.getElementById("opcion2-5");
+    Opciones26 = document.getElementById("opcion2-6");
+    Opciones27 = document.getElementById("opcion2-7");
+    Opciones28 = document.getElementById("opcion2-8");
+    Opciones29 = document.getElementById("opcion2-9");
 
     //Se esconden las opciones hasta el momento de la pregunta
     esconderOpciones();
@@ -183,6 +199,9 @@ function volumeDown(event) {
 }
 
 function keyTyped() {
+    if (key == 'm') {
+        intentos -= 1;
+    }
     //Al presionar la barra espaciadora, llama a la funcion para cambiar la variable "iniciar"
     if (key == ' ') {
         botonReproducir();
@@ -193,6 +212,7 @@ function keyTyped() {
     if (keyCode == ENTER) {
         menu = true;
     }
+
 }
 
 function volverVideo(videoError) {
@@ -209,7 +229,7 @@ function volverVideo(videoError) {
         iniciar = 1;
         reproducir();
 
-        if (intentos == 0) {
+        if (intentos <= 0) {
             //videoFile.pause();
             //Escondo las opciones para continuar con el video
             esconderOpciones();
@@ -249,6 +269,13 @@ function volverVideo(videoError) {
                         videoFile.play().time(286);
                     }, 1);
                     break;
+                case 5:
+                    //Al terminar sus intentos, se continua con el video
+                    setTimeout(function() {
+                        //Opción correcta de la segunda parte, continua con el video
+                        videoFile.play().time(390.5);
+                    }, 1);
+                    break;
             }
         }
     }
@@ -260,8 +287,12 @@ function Preguntas() {
     tiempoVideo = videoFile.time();
     //Duración del video actual
     duracionVideo = videoFile.duration();
-    //Se quitan de la pantalla todas las opciones
-    esconderOpciones();
+    //Se quitan de la pantalla todas las opciones de todas las partes del video
+    esconderOpciones(1);
+    esconderOpciones(21);
+    esconderOpciones(22);
+    esconderOpciones(23);
+    esconderOpciones(3);
 
     //Inicio
     if (!menu) {
@@ -278,7 +309,7 @@ function Preguntas() {
         //videoFile.pause();
         setTimeout(function() {
             //videoFile.play().time(23);
-            videoFile.time(230);
+            videoFile.time(429);
         }, 250);
 
         //Al continuar con el video, muestro los corazones, los trofeos y el puntaje
@@ -291,6 +322,7 @@ function Preguntas() {
         menu = false;
     }
 
+    //------------------- PRIMERA PARTE -------------------
     //Pregunta 1
     if (tiempoVideo > 52.1 && tiempoVideo < 87.5) {
 
@@ -315,7 +347,7 @@ function Preguntas() {
 
         if (!enError) {
             //Si no se encuentra en un video de error, muestra las opciones de respuesta
-            mostrarOpciones();
+            mostrarOpciones(1);
             //Escondo la opción de pelota anteriormente seleccionada
             Opciones11.style.display = "none";
         }
@@ -336,7 +368,7 @@ function Preguntas() {
 
         if (!enError) {
             //Si no se encuentra en un video de error, muestra las opciones de respuesta
-            mostrarOpciones();
+            mostrarOpciones(1);
             //Escondo la opción de pelota anteriormente seleccionada
             Opciones11.style.display = "none";
             Opciones12.style.display = "none";
@@ -359,7 +391,7 @@ function Preguntas() {
 
         if (!enError) {
             //Si no se encuentra en un video de error, muestra las opciones de respuesta
-            mostrarOpciones();
+            mostrarOpciones(1);
             //Escondo la opción de pelota anteriormente seleccionada
             Opciones11.style.display = "none";
             Opciones12.style.display = "none";
@@ -373,6 +405,45 @@ function Preguntas() {
             setTimeout(function() {
                 //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
                 videoFile.time(244);
+            }, 250);
+        }
+    }
+
+    //------------------- SEGUNDA PARTE -------------------
+    //Pregunta 5
+    else if (tiempoVideo > 353.65 && tiempoVideo < 385) {
+
+        if (!enError) {
+            //Si no se encuentra en un video de error, muestra las opciones de respuesta
+            mostrarOpciones(21);
+        }
+
+        //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
+        //enPregunta = false;
+        if (tiempoVideo > 384.60 && tiempoVideo < 384.9) {
+            //videoFile.pauseVideo();
+            setTimeout(function() {
+                //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
+                videoFile.time(358);
+            }, 250);
+        }
+    }
+
+    //Pregunta 6
+    else if (tiempoVideo > 431.25 && tiempoVideo < 470) {
+
+        if (!enError) {
+            //Si no se encuentra en un video de error, muestra las opciones de respuesta
+            mostrarOpciones(22);
+        }
+
+        //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
+        //enPregunta = false;
+        if (tiempoVideo > 469.7 && tiempoVideo < 470) {
+            //videoFile.pauseVideo();
+            setTimeout(function() {
+                //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
+                videoFile.time(435);
             }, 250);
         }
     }
@@ -397,31 +468,31 @@ function opcionesRespuesta(clicked_id) {
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-2':
                 incorrecta = 2;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-3':
                 incorrecta = 5;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-4':
                 incorrecta = 4;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-5':
                 incorrecta = 3;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-6':
                 incorrecta = 1;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-7':
                 incorrecta = 6;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-8':
                 incorrecta = 0;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
         }
     }
@@ -440,27 +511,27 @@ function opcionesRespuesta(clicked_id) {
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-3':
                 incorrecta = 11;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-4':
                 incorrecta = 10;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-5':
                 incorrecta = 9;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-6':
                 incorrecta = 8;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-7':
                 incorrecta = 12;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-8':
                 incorrecta = 7;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
         }
     }
@@ -479,23 +550,23 @@ function opcionesRespuesta(clicked_id) {
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-4':
                 incorrecta = 16;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-5':
                 incorrecta = 15;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-6':
                 incorrecta = 14;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-7':
                 incorrecta = 17;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-8':
                 incorrecta = 13;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
         }
     }
@@ -507,26 +578,49 @@ function opcionesRespuesta(clicked_id) {
             //Opciones incorrectas para la sección de opciones
             case 'opcion1-4':
                 incorrecta = 21;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-5':
                 incorrecta = 20;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-6':
                 incorrecta = 19;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
                 break;
             case 'opcion1-7':
                 setTimeout(function() {
                     //Opción correcta de la cuarta parte, continua con el video
-                    videoFile.time(279.7);
+                    videoFile.time(279.5);
                 }, 250);
                 opcionCorrecta();
                 break;
             case 'opcion1-8':
                 incorrecta = 18;
-                opcionIncorrecta(incorrecta);
+                opcionIncorrecta(incorrecta, 1);
+                break;
+        }
+    }
+
+    //Opciones para la QUINTA pregunta, correctas e incorrectas
+    if (tiempoVideo > 353.65 && tiempoVideo < 385) {
+        pregunta = 5;
+        switch (clicked_id) {
+            //Opciones incorrectas para la sección de opciones
+            case 'opcion2-1':
+                incorrecta = 22;
+                opcionIncorrecta(incorrecta, 2);
+                break;
+            case 'opcion2-2':
+                setTimeout(function() {
+                    //Opción correcta de la cuarta parte, continua con el video
+                    videoFile.time(386);
+                }, 250);
+                opcionCorrecta();
+                break;
+            case 'opcion2-3':
+                incorrecta = 22;
+                opcionIncorrecta(incorrecta, 2);
                 break;
         }
     }
@@ -547,9 +641,9 @@ function opcionCorrecta() {
     intentos = 3;
 }
 
-function opcionIncorrecta(pregunta) {
+function opcionIncorrecta(pregunta, parte) {
     //Se esconden las opciones de selección
-    esconderOpciones();
+    esconderOpciones(parte);
     //Se pausa el video principal para darle paso al error
     iniciar = 0;
     reproducir();
@@ -576,31 +670,83 @@ function opcionIncorrecta(pregunta) {
     }
 }
 
-function esconderOpciones() {
-    //Quito de la pantalla el elemento HTML
-    Opciones11.style.display = "none";
-    Opciones12.style.display = "none";
-    Opciones13.style.display = "none";
-    Opciones14.style.display = "none";
-    Opciones15.style.display = "none";
-    Opciones16.style.display = "none";
-    Opciones17.style.display = "none";
-    Opciones18.style.display = "none";
+function esconderOpciones(parte) {
+    //Se divide el video en diferentes partes, en cualquier caso se muestran diferentes elementos
+    switch (parte) {
+        case 1:
+            //Quito de la pantalla el elemento HTML de la primera parte
+            Opciones11.style.display = "none";
+            Opciones12.style.display = "none";
+            Opciones13.style.display = "none";
+            Opciones14.style.display = "none";
+            Opciones15.style.display = "none";
+            Opciones16.style.display = "none";
+            Opciones17.style.display = "none";
+            Opciones18.style.display = "none";
+            break;
+        case 21:
+            //Quito de la pantalla el elemento HTML de la primera parte
+            Opciones21.style.display = "none";
+            Opciones22.style.display = "none";
+            Opciones23.style.display = "none";
+            break;
+        case 22:
+            //Quito de la pantalla el elemento HTML de la primera parte
+            Opciones24.style.display = "none";
+            Opciones25.style.display = "none";
+            Opciones26.style.display = "none";
+            break;
+        case 23:
+            //Quito de la pantalla el elemento HTML de la primera parte
+            Opciones27.style.display = "none";
+            Opciones28.style.display = "none";
+            Opciones29.style.display = "none";
+            break;
+    }
+
 }
 
-function mostrarOpciones() {
-    //Muestro en pantalla las opciones HTML
-    Opciones11.style.display = "block";
-    Opciones12.style.display = "block";
-    Opciones13.style.display = "block";
-    Opciones14.style.display = "block";
-    Opciones15.style.display = "block";
-    Opciones16.style.display = "block";
-    Opciones17.style.display = "block";
-    Opciones18.style.display = "block";
+function mostrarOpciones(parte) {
+    //Se divide el video en diferentes partes, en cualquier caso se muestran diferentes elementos
+    switch (parte) {
+        //------------------- PRIMERA PARTE -------------------
+        case 1:
+            //Muestro en pantalla las opciones HTML de la primera parte
+            Opciones11.style.display = "block";
+            Opciones12.style.display = "block";
+            Opciones13.style.display = "block";
+            Opciones14.style.display = "block";
+            Opciones15.style.display = "block";
+            Opciones16.style.display = "block";
+            Opciones17.style.display = "block";
+            Opciones18.style.display = "block";
+            break;
+            //------------------- SEGUNDA PARTE -------------------
+        case 21:
+            //Muestro en pantalla las opciones HTML de la primera parte
+            Opciones21.style.display = "block";
+            Opciones22.style.display = "block";
+            Opciones23.style.display = "block";
+
+            break;
+        case 22:
+            //Muestro en pantalla las opciones HTML de la primera parte
+            Opciones24.style.display = "block";
+            Opciones25.style.display = "block";
+            Opciones26.style.display = "block";
+            break;
+        case 23:
+            //Muestro en pantalla las opciones HTML de la primera parte
+            Opciones27.style.display = "block";
+            Opciones28.style.display = "block";
+            Opciones28.style.display = "block";
+            break;
+            //------------------- TERCERA PARTE -------------------
+    }
+
 }
 
-function mostrarCorazones() {
+function mostrarCorazones(parte) {
     //Se muestran todos los corazones nuevamente
     corazon1.style.display = "block";
     corazon2.style.display = "block";
