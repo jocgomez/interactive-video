@@ -276,6 +276,20 @@ function volverVideo(videoError) {
                         videoFile.play().time(390.5);
                     }, 1);
                     break;
+                case 6:
+                    //Al terminar sus intentos, se continua con el video
+                    setTimeout(function() {
+                        //Opción correcta de la segunda parte, continua con el video
+                        videoFile.play().time(474);
+                    }, 1);
+                    break;
+                case 7:
+                    //Al terminar sus intentos, se continua con el video
+                    setTimeout(function() {
+                        //Opción correcta de la segunda parte, continua con el video
+                        videoFile.play().time(574);
+                    }, 1);
+                    break;
             }
         }
     }
@@ -308,8 +322,8 @@ function Preguntas() {
         //Al precionar enter, continua con el video
         //videoFile.pause();
         setTimeout(function() {
-            //videoFile.play().time(23);
-            videoFile.time(429);
+            videoFile.play().time(23);
+            //videoFile.time(440);
         }, 250);
 
         //Al continuar con el video, muestro los corazones, los trofeos y el puntaje
@@ -328,7 +342,7 @@ function Preguntas() {
 
         if (!enError) {
             //Si no se encuentra en un video de error, muestra las opciones de respuesta
-            mostrarOpciones();
+            mostrarOpciones(1);
         }
 
         //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
@@ -448,6 +462,25 @@ function Preguntas() {
         }
     }
 
+    //Pregunta 7
+    else if (tiempoVideo > 524.52 && tiempoVideo < 568.5) {
+
+        if (!enError) {
+            //Si no se encuentra en un video de error, muestra las opciones de respuesta
+            mostrarOpciones(23);
+        }
+
+        //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
+        //enPregunta = false;
+        if (tiempoVideo > 568 && tiempoVideo < 568.5) {
+            //videoFile.pauseVideo();
+            setTimeout(function() {
+                //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
+                videoFile.time(527.5);
+            }, 250);
+        }
+    }
+
 }
 
 function opcionesRespuesta(clicked_id) {
@@ -504,7 +537,7 @@ function opcionesRespuesta(clicked_id) {
             case 'opcion1-2':
                 setTimeout(function() {
                     //Opción correcta de la segunda parte, continua con el video
-                    videoFile.time(151.85);
+                    videoFile.time(152);
                 }, 250);
                 opcionCorrecta();
                 break;
@@ -543,7 +576,7 @@ function opcionesRespuesta(clicked_id) {
             case 'opcion1-3':
                 setTimeout(function() {
                     //Opción correcta de la tercera parte, continua con el video
-                    videoFile.time(216);
+                    videoFile.time(216.1);
                 }, 250);
                 opcionCorrecta();
                 break;
@@ -609,18 +642,64 @@ function opcionesRespuesta(clicked_id) {
             //Opciones incorrectas para la sección de opciones
             case 'opcion2-1':
                 incorrecta = 22;
-                opcionIncorrecta(incorrecta, 2);
+                opcionIncorrecta(incorrecta, 21);
                 break;
             case 'opcion2-2':
                 setTimeout(function() {
                     //Opción correcta de la cuarta parte, continua con el video
-                    videoFile.time(386);
+                    videoFile.time(386.105);
                 }, 250);
                 opcionCorrecta();
                 break;
             case 'opcion2-3':
                 incorrecta = 22;
-                opcionIncorrecta(incorrecta, 2);
+                opcionIncorrecta(incorrecta, 21);
+                break;
+        }
+    }
+
+    //Opciones para la SEXTA pregunta, correctas e incorrectas
+    if (tiempoVideo > 431.25 && tiempoVideo < 470) {
+        pregunta = 6;
+        switch (clicked_id) {
+            //Opciones incorrectas para la sección de opciones
+            case 'opcion2-4':
+                incorrecta = 23;
+                opcionIncorrecta(incorrecta, 22);
+                break;
+            case 'opcion2-5':
+                setTimeout(function() {
+                    //Opción correcta de la cuarta parte, continua con el video
+                    videoFile.time(470.815);
+                }, 250);
+                opcionCorrecta();
+                break;
+            case 'opcion2-6':
+                incorrecta = 23;
+                opcionIncorrecta(incorrecta, 22);
+                break;
+        }
+    }
+
+    //Opciones para la SEPTIMA pregunta, correctas e incorrectas
+    if (tiempoVideo > 524.52 && tiempoVideo < 568.5) {
+        pregunta = 7;
+        switch (clicked_id) {
+            //Opciones incorrectas para la sección de opciones
+            case 'opcion2-7':
+                incorrecta = 24;
+                opcionIncorrecta(incorrecta, 23);
+                break;
+            case 'opcion2-8':
+                setTimeout(function() {
+                    //Opción correcta de la cuarta parte, continua con el video
+                    videoFile.time(570.7);
+                }, 250);
+                opcionCorrecta();
+                break;
+            case 'opcion2-9':
+                incorrecta = 25;
+                opcionIncorrecta(incorrecta, 23);
                 break;
         }
     }
@@ -739,7 +818,7 @@ function mostrarOpciones(parte) {
             //Muestro en pantalla las opciones HTML de la primera parte
             Opciones27.style.display = "block";
             Opciones28.style.display = "block";
-            Opciones28.style.display = "block";
+            Opciones29.style.display = "block";
             break;
             //------------------- TERCERA PARTE -------------------
     }

@@ -194,11 +194,19 @@ body {
     cursor: pointer;
 }
 
+#opcion2-4:hover {
+    content: url("assets/img/Claros/2 parte/rectangulo.png");
+}
+
 #opcion2-5 {
     top: 590px;
     left: 952px;
     display: none;
     cursor: pointer;
+}
+
+#opcion2-5:hover {
+    content: url("assets/img/Claros/2 parte/triangulo (2).png");
 }
 
 #opcion2-6 {
@@ -208,11 +216,19 @@ body {
     cursor: pointer;
 }
 
+#opcion2-6:hover {
+    content: url("assets/img/Claros/2 parte/circulo.png");
+}
+
 #opcion2-7 {
     top: 300px;
     left: 951px;
     display: none;
     cursor: pointer;
+}
+
+#opcion2-7:hover {
+    content: url("assets/img/Claros/2 parte/prisma.png");
 }
 
 #opcion2-8 {
@@ -222,11 +238,19 @@ body {
     cursor: pointer;
 }
 
+#opcion2-8:hover {
+    content: url("assets/img/Claros/2 parte/piramide.png");
+}
+
 #opcion2-9 {
     top: 445px;
     left: 459px;
     display: none;
     cursor: pointer;
+}
+
+#opcion2-9:hover {
+    content: url("assets/img/Claros/2 parte/esfera.png");
 }
 
 #vida-intentos {
