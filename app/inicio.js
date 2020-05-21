@@ -34,7 +34,7 @@ let menu = false;
 var Opciones11;
 
 function preload() {
-    videoFile = createVideo('assets/vid/Entero.mp4', videoLoad);
+    videoFile = createVideo('assets/vid/Final.mp4', videoLoad);
     //Videos de error de la primera selección de preguntas
     videoError[0] = createVideo('assets/vid/error1/incorrectoBateCirculo.mp4', videoLoad);
     videoError[1] = createVideo('assets/vid/error1/incorrectoCometaCirculo.mp4', videoLoad);
@@ -67,6 +67,10 @@ function preload() {
     videoError[23] = createVideo('assets/vid/error5/Incorrecta2.mp4', videoLoad);
     videoError[24] = createVideo('assets/vid/error5/Incorrecta3.1.mp4', videoLoad);
     videoError[25] = createVideo('assets/vid/error5/Incorrecta3.2.mp4', videoLoad);
+
+    //Videos de error de la Sexta selección de preguntas PARTE 3
+    videoError[26] = createVideo('assets/vid/error6/Incorrecta.mp4', videoLoad);
+
 }
 
 function videoLoad() {
@@ -112,6 +116,10 @@ function setup() {
     Opciones27 = document.getElementById("opcion2-7");
     Opciones28 = document.getElementById("opcion2-8");
     Opciones29 = document.getElementById("opcion2-9");
+    //Código para llamar las opciones de respuesta para la tercera parte del video
+    Opciones31 = document.getElementById("opcion3-1");
+    Opciones32 = document.getElementById("opcion3-2");
+    Opciones33 = document.getElementById("opcion3-3");
 
     //Se esconden las opciones hasta el momento de la pregunta
     esconderOpciones();
@@ -290,6 +298,13 @@ function volverVideo(videoError) {
                         videoFile.play().time(574);
                     }, 1);
                     break;
+                case 8:
+                    //Al terminar sus intentos, se continua con el video
+                    setTimeout(function() {
+                        //Opción correcta de la segunda parte, continua con el video
+                        videoFile.play().time(728);
+                    }, 1);
+                    break;
             }
         }
     }
@@ -322,8 +337,8 @@ function Preguntas() {
         //Al precionar enter, continua con el video
         //videoFile.pause();
         setTimeout(function() {
-            videoFile.play().time(23);
-            //videoFile.time(440);
+            //videoFile.play().time(23);
+            videoFile.time(660);
         }, 250);
 
         //Al continuar con el video, muestro los corazones, los trofeos y el puntaje
@@ -479,6 +494,31 @@ function Preguntas() {
                 videoFile.time(527.5);
             }, 250);
         }
+    }
+
+    //------------------- TERCERA PARTE -------------------
+    //Pregunta 8
+    else if (tiempoVideo > 664 && tiempoVideo < 718) {
+
+        if (!enError) {
+            //Si no se encuentra en un video de error, muestra las opciones de respuesta
+            mostrarOpciones(3);
+        }
+
+        //Se encuentra en una pregunta, esto hace que no pueda pausar o reproducir el video
+        //enPregunta = false;
+        if (tiempoVideo > 717.6 && tiempoVideo < 718) {
+            //videoFile.pauseVideo();
+            setTimeout(function() {
+                //Bucle en la pregunta 1 hasta que pierda todas las vidas o seleccione la respuesta correcta
+                videoFile.time(669);
+            }, 250);
+        }
+    }
+
+    //FINAL
+    else if (tiempoVideo > 741 && tiempoVideo < 741.3) {
+        esconderCorazonesTrofeos();
     }
 
 }
@@ -703,6 +743,29 @@ function opcionesRespuesta(clicked_id) {
                 break;
         }
     }
+
+    //Opciones para la OCTAVA pregunta, correctas e incorrectas
+    if (tiempoVideo > 664 && tiempoVideo < 718) {
+        pregunta = 8;
+        switch (clicked_id) {
+            //Opciones incorrectas para la sección de opciones
+            case 'opcion3-1':
+                setTimeout(function() {
+                    //Opción correcta de la cuarta parte, continua con el video
+                    videoFile.time(719);
+                }, 250);
+                opcionCorrecta();
+                break;
+            case 'opcion3-2':
+                incorrecta = 26;
+                opcionIncorrecta(incorrecta, 3);
+                break;
+            case 'opcion3-3':
+                incorrecta = 26;
+                opcionIncorrecta(incorrecta, 3);
+                break;
+        }
+    }
 }
 
 function opcionCorrecta() {
@@ -764,23 +827,28 @@ function esconderOpciones(parte) {
             Opciones18.style.display = "none";
             break;
         case 21:
-            //Quito de la pantalla el elemento HTML de la primera parte
+            //Quito de la pantalla el elemento HTML de la segunda parte
             Opciones21.style.display = "none";
             Opciones22.style.display = "none";
             Opciones23.style.display = "none";
             break;
         case 22:
-            //Quito de la pantalla el elemento HTML de la primera parte
+            //Quito de la pantalla el elemento HTML de la segunda parte
             Opciones24.style.display = "none";
             Opciones25.style.display = "none";
             Opciones26.style.display = "none";
             break;
         case 23:
-            //Quito de la pantalla el elemento HTML de la primera parte
+            //Quito de la pantalla el elemento HTML de la segunda parte
             Opciones27.style.display = "none";
             Opciones28.style.display = "none";
             Opciones29.style.display = "none";
             break;
+        case 3:
+            //Quito de la pantalla el elemento HTML de la tercera parte
+            Opciones31.style.display = "none";
+            Opciones32.style.display = "none";
+            Opciones33.style.display = "none";
     }
 
 }
@@ -821,13 +889,26 @@ function mostrarOpciones(parte) {
             Opciones29.style.display = "block";
             break;
             //------------------- TERCERA PARTE -------------------
+        case 3:
+            //Muestro en pantalla las opciones HTML de la primera parte
+            Opciones31.style.display = "block";
+            Opciones32.style.display = "block";
+            Opciones33.style.display = "block";
+            break;
     }
 
 }
 
-function mostrarCorazones(parte) {
+function mostrarCorazones() {
     //Se muestran todos los corazones nuevamente
     corazon1.style.display = "block";
     corazon2.style.display = "block";
     corazon3.style.display = "block";
+}
+
+function esconderCorazonesTrofeos() {
+    corazon1.style.display = "none";
+    corazon2.style.display = "none";
+    corazon3.style.display = "none";
+    document.getElementById("puntaje-trofeos").style.display = "none";
 }

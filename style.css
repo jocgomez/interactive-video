@@ -253,6 +253,39 @@ body {
     content: url("assets/img/Claros/2 parte/esfera.png");
 }
 
+#opcion3-1 {
+    top: 643px;
+    left: 1592.5px;
+    display: none;
+    cursor: pointer;
+}
+
+#opcion3-1:hover {
+    content: url("assets/img/Claros/3 parte/penta.png");
+}
+
+#opcion3-2 {
+    top: 635px;
+    left: 1356.5px;
+    display: none;
+    cursor: pointer;
+}
+
+#opcion3-2:hover {
+    content: url("assets/img/Claros/3 parte/rect.png");
+}
+
+#opcion3-3 {
+    top: 636px;
+    left: 1101px;
+    display: none;
+    cursor: pointer;
+}
+
+#opcion3-3:hover {
+    content: url("assets/img/Claros/3 parte/tri.png");
+}
+
 #vida-intentos {
     position: absolute;
     display: flex;
