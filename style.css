@@ -301,6 +301,21 @@ body {
     margin: 10px;
 }
 
+#bordeCorazon1,
+#bordeCorazon2,
+#bordeCorazon3 {
+    position: absolute;
+    z-index: 5;
+}
+
+#bordeCorazon2 {
+    left: 70px;
+}
+
+#bordeCorazon3 {
+    left: 140px;
+}
+
 #puntaje-trofeos {
     position: absolute;
     display: flex;
@@ -308,10 +323,6 @@ body {
     justify-content: space-between;
     top: 12%;
     left: 2%;
-}
-
-#puntaje-trofeos h3 {
-    display: flex;
     align-items: center;
     justify-content: center;
 }

@@ -15,6 +15,15 @@ var duracionError = 0;
 var enError = false;
 //Variable para identificar en que pregunta se encuentra
 var pregunta = 0;
+//Arreglo donde se guardará la información del estudiante en formato JSON
+var partida = {};
+var preguntas = [];
+var infoPregunta = {};
+//Variable que permitirá identificar y guardar la primera respuesta de cada pregunta
+var primeraRespuesta;
+var primera = true;
+var today = 0;
+var enviar = false;
 
 //Variable para reproducir o pausar el video
 let iniciar = 0;
@@ -30,8 +39,6 @@ let puntaje = 0;
 let intentos = 3;
 //Variable para saltar el menú inicial
 let menu = false;
-
-var Opciones11;
 
 function preload() {
     videoFile = createVideo('assets/vid/Final.mp4', videoLoad);
@@ -221,6 +228,55 @@ function keyTyped() {
         menu = true;
     }
 
+    if (key == '1') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(50);
+        }, 250);
+    }
+    if (key == '2') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(115);
+        }, 250);
+    }
+    if (key == '3') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(172);
+        }, 250);
+    }
+    if (key == '4') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(240);
+        }, 250);
+    }
+    if (key == '5') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(352);
+        }, 250);
+    }
+    if (key == '6') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(430);
+        }, 250);
+    }
+    if (key == '7') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(522);
+        }, 250);
+    }
+    if (key == '8') {
+        setTimeout(function() {
+            //Opción correcta de la primera parte, continua con el video
+            videoFile.time(662);
+        }, 250);
+    }
+
 }
 
 function volverVideo(videoError) {
@@ -238,9 +294,13 @@ function volverVideo(videoError) {
         reproducir();
 
         if (intentos <= 0) {
+            primera = true;
             //videoFile.pause();
             //Escondo las opciones para continuar con el video
             esconderOpciones();
+            infoPregunta["Intentos"] = 3;
+            preguntas.push(infoPregunta);
+            infoPregunta = {};
             //Establezco nuevamente los intentos a 3, para las siguientes opciones de respuesta
             intentos = 3;
             //Ya no se encuentra en una pregunta
@@ -337,8 +397,8 @@ function Preguntas() {
         //Al precionar enter, continua con el video
         //videoFile.pause();
         setTimeout(function() {
-            //videoFile.play().time(23);
-            videoFile.time(660);
+            videoFile.play().time(23);
+            //videoFile.time(50);
         }, 250);
 
         //Al continuar con el video, muestro los corazones, los trofeos y el puntaje
@@ -516,9 +576,18 @@ function Preguntas() {
         }
     }
 
-    //FINAL
+    //FINAL JSON
     else if (tiempoVideo > 741 && tiempoVideo < 741.3) {
         esconderCorazonesTrofeos();
+        partida["Preguntas"] = preguntas;
+        partida["Fecha"] = today;
+        var jsonPartida = JSON.stringify(partida);
+        if (!enviar) {
+            console.log(jsonPartida);
+            document.getElementById("campos").value = jsonPartida;
+            document.getElementById("botonEnviar").click;
+            enviar = true;
+        }
     }
 
 }
@@ -536,77 +605,94 @@ function opcionesRespuesta(clicked_id) {
                     //Opción correcta de la primera parte, continua con el video
                     videoFile.time(88);
                 }, 250);
+                guardarPrimeraRespuesta("Pelota", 0);
                 opcionCorrecta();
                 break;
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-2':
                 incorrecta = 2;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Cubeta", 0);
                 break;
             case 'opcion1-3':
                 incorrecta = 5;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Tabla de Surf", 0);
                 break;
             case 'opcion1-4':
                 incorrecta = 4;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Piramide", 0);
                 break;
             case 'opcion1-5':
                 incorrecta = 3;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Megafono", 0);
                 break;
             case 'opcion1-6':
                 incorrecta = 1;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Cometa", 0);
                 break;
             case 'opcion1-7':
                 incorrecta = 6;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Toalla", 0);
                 break;
             case 'opcion1-8':
                 incorrecta = 0;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Bate", 0);
                 break;
         }
+        //partida[0] = preguntas;
     }
 
     //Opciones para la SEGUNDA pregunta, correctas e incorrectas
     if (tiempoVideo > 117 && tiempoVideo < 151) {
-        pregunta = 3;
+        pregunta = 2;
         switch (clicked_id) {
             case 'opcion1-2':
                 setTimeout(function() {
                     //Opción correcta de la segunda parte, continua con el video
                     videoFile.time(152);
                 }, 250);
+                guardarPrimeraRespuesta("Cubeta", 1);
                 opcionCorrecta();
                 break;
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-3':
                 incorrecta = 11;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Tabla de Surf", 1);
                 break;
             case 'opcion1-4':
                 incorrecta = 10;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Piramide", 1);
                 break;
             case 'opcion1-5':
                 incorrecta = 9;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Megafono", 1);
                 break;
             case 'opcion1-6':
                 incorrecta = 8;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Cometa", 1);
                 break;
             case 'opcion1-7':
                 incorrecta = 12;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Toalla", 1);
                 break;
             case 'opcion1-8':
                 incorrecta = 7;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Bate", 1);
                 break;
         }
+        //partida[1] = preguntas;
     }
 
     //Opciones para la TERCERA pregunta, correctas e incorrectas
@@ -618,30 +704,37 @@ function opcionesRespuesta(clicked_id) {
                     //Opción correcta de la tercera parte, continua con el video
                     videoFile.time(216.1);
                 }, 250);
+                guardarPrimeraRespuesta("Tabla de Surf", 2);
                 opcionCorrecta();
                 break;
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-4':
                 incorrecta = 16;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Piramide", 2);
                 break;
             case 'opcion1-5':
                 incorrecta = 15;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Megafono", 2);
                 break;
             case 'opcion1-6':
                 incorrecta = 14;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Cometa", 2);
                 break;
             case 'opcion1-7':
                 incorrecta = 17;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Toalla", 2);
                 break;
             case 'opcion1-8':
                 incorrecta = 13;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Bate", 2);
                 break;
         }
+        //partida[2] = preguntas;
     }
 
     //Opciones para la CUARTA pregunta, correctas e incorrectas
@@ -652,27 +745,33 @@ function opcionesRespuesta(clicked_id) {
             case 'opcion1-4':
                 incorrecta = 21;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Piramide", 3);
                 break;
             case 'opcion1-5':
                 incorrecta = 20;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Megafono", 3);
                 break;
             case 'opcion1-6':
                 incorrecta = 19;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Cometa", 3);
                 break;
             case 'opcion1-7':
                 setTimeout(function() {
                     //Opción correcta de la cuarta parte, continua con el video
                     videoFile.time(279.5);
                 }, 250);
+                guardarPrimeraRespuesta("Toalla", 3);
                 opcionCorrecta();
                 break;
             case 'opcion1-8':
                 incorrecta = 18;
                 opcionIncorrecta(incorrecta, 1);
+                guardarPrimeraRespuesta("Bate", 3);
                 break;
         }
+        //partida[3] = preguntas;
     }
 
     //Opciones para la QUINTA pregunta, correctas e incorrectas
@@ -683,19 +782,23 @@ function opcionesRespuesta(clicked_id) {
             case 'opcion2-1':
                 incorrecta = 22;
                 opcionIncorrecta(incorrecta, 21);
+                guardarPrimeraRespuesta("Triangulo", 4);
                 break;
             case 'opcion2-2':
                 setTimeout(function() {
                     //Opción correcta de la cuarta parte, continua con el video
                     videoFile.time(386.105);
                 }, 250);
+                guardarPrimeraRespuesta("Rombo", 4);
                 opcionCorrecta();
                 break;
             case 'opcion2-3':
                 incorrecta = 22;
                 opcionIncorrecta(incorrecta, 21);
+                guardarPrimeraRespuesta("Pentagono", 4);
                 break;
         }
+        //partida[4] = preguntas;
     }
 
     //Opciones para la SEXTA pregunta, correctas e incorrectas
@@ -706,19 +809,23 @@ function opcionesRespuesta(clicked_id) {
             case 'opcion2-4':
                 incorrecta = 23;
                 opcionIncorrecta(incorrecta, 22);
+                guardarPrimeraRespuesta("Rectangulo", 5);
                 break;
             case 'opcion2-5':
                 setTimeout(function() {
                     //Opción correcta de la cuarta parte, continua con el video
                     videoFile.time(470.815);
                 }, 250);
+                guardarPrimeraRespuesta("Triangulo", 5);
                 opcionCorrecta();
                 break;
             case 'opcion2-6':
                 incorrecta = 23;
                 opcionIncorrecta(incorrecta, 22);
+                guardarPrimeraRespuesta("Circulo", 5);
                 break;
         }
+        //partida[5] = preguntas;
     }
 
     //Opciones para la SEPTIMA pregunta, correctas e incorrectas
@@ -729,19 +836,23 @@ function opcionesRespuesta(clicked_id) {
             case 'opcion2-7':
                 incorrecta = 24;
                 opcionIncorrecta(incorrecta, 23);
+                guardarPrimeraRespuesta("Prisma", 6);
                 break;
             case 'opcion2-8':
                 setTimeout(function() {
                     //Opción correcta de la cuarta parte, continua con el video
                     videoFile.time(570.7);
                 }, 250);
+                guardarPrimeraRespuesta("Piramide", 6);
                 opcionCorrecta();
                 break;
             case 'opcion2-9':
                 incorrecta = 25;
                 opcionIncorrecta(incorrecta, 23);
+                guardarPrimeraRespuesta("Esfera", 6);
                 break;
         }
+        //partida[6] = preguntas;
     }
 
     //Opciones para la OCTAVA pregunta, correctas e incorrectas
@@ -754,18 +865,27 @@ function opcionesRespuesta(clicked_id) {
                     //Opción correcta de la cuarta parte, continua con el video
                     videoFile.time(719);
                 }, 250);
+                guardarPrimeraRespuesta("Prisma pentagonal", 7);
                 opcionCorrecta();
                 break;
             case 'opcion3-2':
                 incorrecta = 26;
                 opcionIncorrecta(incorrecta, 3);
+                guardarPrimeraRespuesta("Prisma rectangular", 7);
                 break;
             case 'opcion3-3':
                 incorrecta = 26;
                 opcionIncorrecta(incorrecta, 3);
+                guardarPrimeraRespuesta("Prisma triangular", 7);
                 break;
         }
+        //partida[7] = preguntas;
     }
+
+    //partida.push(preguntas);
+    //console.log(preguntas);
+    //console.log(partida);
+    //console.log(JSON.stringify(partida));
 }
 
 function opcionCorrecta() {
@@ -780,10 +900,15 @@ function opcionCorrecta() {
     //Muestro nuevamente todos los corazones
     mostrarCorazones();
     //Se reestablecen los intentos por pregunta
+    infoPregunta["Intentos"] = 3 - intentos;
+    infoPregunta["Puntaje"] = 1;
+    preguntas.push(infoPregunta);
+    infoPregunta = {};
     intentos = 3;
+    primera = true;
 }
 
-function opcionIncorrecta(pregunta, parte) {
+function opcionIncorrecta(preg, parte) {
     //Se esconden las opciones de selección
     esconderOpciones(parte);
     //Se pausa el video principal para darle paso al error
@@ -794,9 +919,11 @@ function opcionIncorrecta(pregunta, parte) {
     //Se va reduciendo los intentos hasta llegar a cero
     intentos -= 1;
     //Se reproduce el video de error determinado
-    videoError[pregunta].play();
+    videoError[preg].play();
     //Se encuentra en un video de error
     enError = true;
+    infoPregunta["Puntaje"] = 0;
+    infoPregunta["Intentos"] = 3 - intentos;
 
     //Se destruyen los corazons a partir de la cantidad de incorrectos realizados
     switch (intentos) {
@@ -911,4 +1038,19 @@ function esconderCorazonesTrofeos() {
     corazon2.style.display = "none";
     corazon3.style.display = "none";
     document.getElementById("puntaje-trofeos").style.display = "none";
+}
+
+function guardarPrimeraRespuesta(nombreRespuesta, pos) {
+    if (primera) {
+        today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '/' + mm + '/' + dd;
+
+        primeraRespuesta = nombreRespuesta;
+        infoPregunta["Respuesta"] = primeraRespuesta;
+        //preguntas[3] = today;
+        primera = false;
+    }
 }
