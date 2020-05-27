@@ -24,6 +24,8 @@ var primeraRespuesta;
 var primera = true;
 var today = 0;
 var enviar = false;
+//Variable para establecer cual de los videos de opcion incorrecta reproducir
+var incorrecta = 0;
 
 //Variable para reproducir o pausar el video
 let iniciar = 0;
@@ -31,8 +33,7 @@ let iniciar = 0;
 let enPregunta = false;
 //Variable para reproducir el video principal en caso de que se seleccione una opcion correcta o de lo contrario los videos de las opciones incorrectas
 let correcta = true;
-//Variable para establecer cual de los videos de opcion incorrecta reproducir
-let incorrecta = 0;
+
 //Variable para almacenar el puntaje
 let puntaje = 0;
 //Variable para establecer una serie de intentos
@@ -78,6 +79,41 @@ function preload() {
     //Videos de error de la Sexta selección de preguntas PARTE 3
     videoError[26] = createVideo('assets/vid/error6/Incorrecta.mp4', videoLoad);
 
+    //Videos de error finales para la primera parte (Circulo)
+    videoError[27] = createVideo('assets/vid/ultimo1/incorrectoBateCirculoUltimo.mp4', videoLoad);
+    videoError[28] = createVideo('assets/vid/ultimo1/incorrectoCometaCirculoUltimo.mp4', videoLoad);
+    videoError[29] = createVideo('assets/vid/ultimo1/incorrectoMegafonoCirculoUltimo.mp4', videoLoad);
+    videoError[30] = createVideo('assets/vid/ultimo1/incorrectoPiramideCirculoUltimo.mp4', videoLoad);
+    videoError[31] = createVideo('assets/vid/ultimo1/incorrectoTablaCirculoUltimo.mp4', videoLoad);
+    videoError[32] = createVideo('assets/vid/ultimo1/incorrectoToallaCirculoUltimo.mp4', videoLoad);
+    videoError[33] = createVideo('assets/vid/ultimo1/incorrectoCubetaCirculoUltimo.mp4', videoLoad);
+    //Videos de error finales para la primera parte (Cilindro)
+    videoError[34] = createVideo('assets/vid/ultimo1/incorrectoBateCilindroUltimo.mp4', videoLoad);
+    videoError[35] = createVideo('assets/vid/ultimo1/incorrectoCometaCilindroUltimo.mp4', videoLoad);
+    videoError[36] = createVideo('assets/vid/ultimo1/incorrectoMegafonoCilindroUltimo.mp4', videoLoad);
+    videoError[37] = createVideo('assets/vid/ultimo1/incorrectoPiramideCilindroUltimo.mp4', videoLoad);
+    videoError[38] = createVideo('assets/vid/ultimo1/incorrectoTablaCilindroUltimo.mp4', videoLoad);
+    videoError[39] = createVideo('assets/vid/ultimo1/incorrectoToallaCilindroUltimo.mp4', videoLoad);
+    //Videos de error finales para la primera parte (Ovalo)
+    videoError[40] = createVideo('assets/vid/ultimo1/incorrectoBateOvaloUltimo.mp4', videoLoad);
+    videoError[41] = createVideo('assets/vid/ultimo1/incorrectoCometaOvaloUltimo.mp4', videoLoad);
+    videoError[42] = createVideo('assets/vid/ultimo1/incorrectoMegafonoOvaloUltimo.mp4', videoLoad);
+    videoError[43] = createVideo('assets/vid/ultimo1/incorrectoPiramideOvaloUltimo.mp4', videoLoad);
+    videoError[44] = createVideo('assets/vid/ultimo1/incorrectoToallaOvaloUltimo.mp4', videoLoad);
+    //Videos de error finales para la primera parte (Rectangulo)
+    videoError[45] = createVideo('assets/vid/ultimo1/incorrectoBateRectanguloUltimo.mp4', videoLoad);
+    videoError[46] = createVideo('assets/vid/ultimo1/incorrectoCometaRectanguloUltimo.mp4', videoLoad);
+    videoError[47] = createVideo('assets/vid/ultimo1/incorrectoMegafonoRectanguloUltimo.mp4', videoLoad);
+    videoError[48] = createVideo('assets/vid/ultimo1/incorrectoPiramideRectanguloUltimo.mp4', videoLoad);
+
+    //Videos de error finales para la segunda parte
+    videoError[49] = createVideo('assets/vid/ultimo2/Incorrecta1.2.mp4', videoLoad);
+    videoError[50] = createVideo('assets/vid/ultimo2/Incorrecta2.2.mp4', videoLoad);
+    videoError[51] = createVideo('assets/vid/ultimo2/Incorrecta3.1.2.mp4', videoLoad);
+    videoError[52] = createVideo('assets/vid/ultimo2/Incorrecta3.2.2.mp4', videoLoad);
+
+    //Videos de error finales para la tercera parte
+    videoError[53] = createVideo('assets/vid/ultimo3/lupeAyuda.mp4', videoLoad);
 }
 
 function videoLoad() {
@@ -136,12 +172,17 @@ function setup() {
     corazon2 = document.getElementById("corazon2");
     corazon3 = document.getElementById("corazon3");
     trofeo = document.getElementById("trofeo");
+    bordeCorazon1 = document.getElementById("bordeCorazon1");
+    bordeCorazon2 = document.getElementById("bordeCorazon2");
+    bordeCorazon3 = document.getElementById("bordeCorazon3");
 
     //En el menú inicial escondo los corazones, los trofeos y el puntaje
-    corazon1.style.display = "none";
-    corazon2.style.display = "none";
-    corazon3.style.display = "none";
-    trofeo.style.display = "none";
+    corazon1.style.visibility = "hidden";
+    corazon2.style.visibility = "hidden";
+    corazon3.style.visibility = "hidden";
+    bordeCorazon1.style.visibility = "hidden";
+    bordeCorazon2.style.visibility = "hidden";
+    bordeCorazon3.style.visibility = "hidden";
     document.getElementById("puntaje").style.display = "none";
 }
 
@@ -295,7 +336,6 @@ function volverVideo(videoError) {
 
         if (intentos <= 0) {
             primera = true;
-            //videoFile.pause();
             //Escondo las opciones para continuar con el video
             esconderOpciones();
             infoPregunta["Intentos"] = 3;
@@ -402,9 +442,7 @@ function Preguntas() {
         }, 250);
 
         //Al continuar con el video, muestro los corazones, los trofeos y el puntaje
-        corazon1.style.display = "block";
-        corazon2.style.display = "block";
-        corazon3.style.display = "block";
+        mostrarCorazones();
         trofeo.style.display = "block";
         document.getElementById("puntaje").style.display = "block";
         //Ya no esta en el menu
@@ -610,37 +648,37 @@ function opcionesRespuesta(clicked_id) {
                 break;
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-2':
-                incorrecta = 2;
+                if (intentos <= 1) { incorrecta = 33 } else { incorrecta = 2; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Cubeta", 0);
                 break;
             case 'opcion1-3':
-                incorrecta = 5;
+                if (intentos <= 1) { incorrecta = 31 } else { incorrecta = 5; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Tabla de Surf", 0);
                 break;
             case 'opcion1-4':
-                incorrecta = 4;
+                if (intentos <= 1) { incorrecta = 30 } else { incorrecta = 4; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Piramide", 0);
                 break;
             case 'opcion1-5':
-                incorrecta = 3;
+                if (intentos <= 1) { incorrecta = 29 } else { incorrecta = 3; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Megafono", 0);
                 break;
             case 'opcion1-6':
-                incorrecta = 1;
+                if (intentos <= 1) { incorrecta = 28 } else { incorrecta = 1; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Cometa", 0);
                 break;
             case 'opcion1-7':
-                incorrecta = 6;
+                if (intentos <= 1) { incorrecta = 32 } else { incorrecta = 6; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Toalla", 0);
                 break;
             case 'opcion1-8':
-                incorrecta = 0;
+                if (intentos <= 1) { incorrecta = 27 } else { incorrecta = 0; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Bate", 0);
                 break;
@@ -662,32 +700,32 @@ function opcionesRespuesta(clicked_id) {
                 break;
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-3':
-                incorrecta = 11;
+                if (intentos <= 1) { incorrecta = 38 } else { incorrecta = 11; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Tabla de Surf", 1);
                 break;
             case 'opcion1-4':
-                incorrecta = 10;
+                if (intentos <= 1) { incorrecta = 37 } else { incorrecta = 10; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Piramide", 1);
                 break;
             case 'opcion1-5':
-                incorrecta = 9;
+                if (intentos <= 1) { incorrecta = 36 } else { incorrecta = 9; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Megafono", 1);
                 break;
             case 'opcion1-6':
-                incorrecta = 8;
+                if (intentos <= 1) { incorrecta = 35 } else { incorrecta = 8; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Cometa", 1);
                 break;
             case 'opcion1-7':
-                incorrecta = 12;
+                if (intentos <= 1) { incorrecta = 39 } else { incorrecta = 12; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Toalla", 1);
                 break;
             case 'opcion1-8':
-                incorrecta = 7;
+                if (intentos <= 1) { incorrecta = 34 } else { incorrecta = 7; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Bate", 1);
                 break;
@@ -709,27 +747,27 @@ function opcionesRespuesta(clicked_id) {
                 break;
                 //Opciones incorrectas para la sección de opciones
             case 'opcion1-4':
-                incorrecta = 16;
+                if (intentos <= 1) { incorrecta = 43 } else { incorrecta = 16; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Piramide", 2);
                 break;
             case 'opcion1-5':
-                incorrecta = 15;
+                if (intentos <= 1) { incorrecta = 42 } else { incorrecta = 15; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Megafono", 2);
                 break;
             case 'opcion1-6':
-                incorrecta = 14;
+                if (intentos <= 1) { incorrecta = 41 } else { incorrecta = 14; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Cometa", 2);
                 break;
             case 'opcion1-7':
-                incorrecta = 17;
+                if (intentos <= 1) { incorrecta = 44 } else { incorrecta = 17; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Toalla", 2);
                 break;
             case 'opcion1-8':
-                incorrecta = 13;
+                if (intentos <= 1) { incorrecta = 40 } else { incorrecta = 13; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Bate", 2);
                 break;
@@ -743,17 +781,17 @@ function opcionesRespuesta(clicked_id) {
         switch (clicked_id) {
             //Opciones incorrectas para la sección de opciones
             case 'opcion1-4':
-                incorrecta = 21;
+                if (intentos <= 1) { incorrecta = 48 } else { incorrecta = 21; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Piramide", 3);
                 break;
             case 'opcion1-5':
-                incorrecta = 20;
+                if (intentos <= 1) { incorrecta = 47 } else { incorrecta = 20; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Megafono", 3);
                 break;
             case 'opcion1-6':
-                incorrecta = 19;
+                if (intentos <= 1) { incorrecta = 46 } else { incorrecta = 19; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Cometa", 3);
                 break;
@@ -766,7 +804,7 @@ function opcionesRespuesta(clicked_id) {
                 opcionCorrecta();
                 break;
             case 'opcion1-8':
-                incorrecta = 18;
+                if (intentos <= 1) { incorrecta = 45 } else { incorrecta = 18; }
                 opcionIncorrecta(incorrecta, 1);
                 guardarPrimeraRespuesta("Bate", 3);
                 break;
@@ -780,7 +818,7 @@ function opcionesRespuesta(clicked_id) {
         switch (clicked_id) {
             //Opciones incorrectas para la sección de opciones
             case 'opcion2-1':
-                incorrecta = 22;
+                if (intentos <= 1) { incorrecta = 49 } else { incorrecta = 22; }
                 opcionIncorrecta(incorrecta, 21);
                 guardarPrimeraRespuesta("Triangulo", 4);
                 break;
@@ -793,7 +831,7 @@ function opcionesRespuesta(clicked_id) {
                 opcionCorrecta();
                 break;
             case 'opcion2-3':
-                incorrecta = 22;
+                if (intentos <= 1) { incorrecta = 49 } else { incorrecta = 22; }
                 opcionIncorrecta(incorrecta, 21);
                 guardarPrimeraRespuesta("Pentagono", 4);
                 break;
@@ -807,7 +845,7 @@ function opcionesRespuesta(clicked_id) {
         switch (clicked_id) {
             //Opciones incorrectas para la sección de opciones
             case 'opcion2-4':
-                incorrecta = 23;
+                if (intentos <= 1) { incorrecta = 50 } else { incorrecta = 23; }
                 opcionIncorrecta(incorrecta, 22);
                 guardarPrimeraRespuesta("Rectangulo", 5);
                 break;
@@ -820,7 +858,7 @@ function opcionesRespuesta(clicked_id) {
                 opcionCorrecta();
                 break;
             case 'opcion2-6':
-                incorrecta = 23;
+                if (intentos <= 1) { incorrecta = 50 } else { incorrecta = 23; }
                 opcionIncorrecta(incorrecta, 22);
                 guardarPrimeraRespuesta("Circulo", 5);
                 break;
@@ -834,7 +872,7 @@ function opcionesRespuesta(clicked_id) {
         switch (clicked_id) {
             //Opciones incorrectas para la sección de opciones
             case 'opcion2-7':
-                incorrecta = 24;
+                if (intentos <= 1) { incorrecta = 51 } else { incorrecta = 24; }
                 opcionIncorrecta(incorrecta, 23);
                 guardarPrimeraRespuesta("Prisma", 6);
                 break;
@@ -847,7 +885,7 @@ function opcionesRespuesta(clicked_id) {
                 opcionCorrecta();
                 break;
             case 'opcion2-9':
-                incorrecta = 25;
+                if (intentos <= 1) { incorrecta = 52 } else { incorrecta = 25; }
                 opcionIncorrecta(incorrecta, 23);
                 guardarPrimeraRespuesta("Esfera", 6);
                 break;
@@ -869,12 +907,12 @@ function opcionesRespuesta(clicked_id) {
                 opcionCorrecta();
                 break;
             case 'opcion3-2':
-                incorrecta = 26;
+                if (intentos <= 1) { incorrecta = 53 } else { incorrecta = 26; }
                 opcionIncorrecta(incorrecta, 3);
                 guardarPrimeraRespuesta("Prisma rectangular", 7);
                 break;
             case 'opcion3-3':
-                incorrecta = 26;
+                if (intentos <= 1) { incorrecta = 53 } else { incorrecta = 26; }
                 opcionIncorrecta(incorrecta, 3);
                 guardarPrimeraRespuesta("Prisma triangular", 7);
                 break;
@@ -928,13 +966,13 @@ function opcionIncorrecta(preg, parte) {
     //Se destruyen los corazons a partir de la cantidad de incorrectos realizados
     switch (intentos) {
         case 2:
-            corazon3.style.display = "none";
+            corazon3.style.visibility = "hidden";
             break;
         case 1:
-            corazon2.style.display = "none";
+            corazon2.style.visibility = "hidden";
             break;
         case 0:
-            corazon1.style.display = "none";
+            corazon1.style.visibility = "hidden";
             break;
     }
 }
@@ -1028,15 +1066,22 @@ function mostrarOpciones(parte) {
 
 function mostrarCorazones() {
     //Se muestran todos los corazones nuevamente
-    corazon1.style.display = "block";
-    corazon2.style.display = "block";
-    corazon3.style.display = "block";
+    corazon1.style.visibility = "visible";
+    corazon2.style.visibility = "visible";
+    corazon3.style.visibility = "visible";
+    bordeCorazon1.style.visibility = "visible";
+    bordeCorazon2.style.visibility = "visible";
+    bordeCorazon3.style.visibility = "visible";
+
 }
 
 function esconderCorazonesTrofeos() {
-    corazon1.style.display = "none";
-    corazon2.style.display = "none";
-    corazon3.style.display = "none";
+    corazon1.style.visibility = "hidden";
+    corazon2.style.visibility = "hidden";
+    corazon3.style.visibility = "hidden";
+    bordeCorazon1.style.visibility = "hidden";
+    bordeCorazon2.style.visibility = "hidden";
+    bordeCorazon3.style.visibility = "hidden";
     document.getElementById("puntaje-trofeos").style.display = "none";
 }
 
